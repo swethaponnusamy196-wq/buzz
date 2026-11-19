@@ -1,0 +1,2013 @@
+<!-- Dashboard -->
+<!DOCTYPE html>
+
+<html class="h-full bg-slate-50" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-tint": "#5b598c",
+        "error": "#b91c1c",
+        "surface-dim": "#f1f5f9",
+        "primary-fixed": "#e0e7ff",
+        "tertiary": "#0f172a",
+        "background": "#f8fafc",
+        "secondary": "#2563eb",
+        "on-surface": "#0f172a",
+        "surface-container-lowest": "#ffffff",
+        "surface-container": "#f1f5f9",
+        "surface-container-high": "#e2e8f0",
+        "on-surface-variant": "#64748b",
+        "outline": "#94a3b8",
+        "outline-variant": "#e2e8f0",
+        "primary": "#0f172a",
+        "primary-container": "#1e293b",
+        "accent": "#4f46e5"
+      },
+      borderRadius: {
+        'sm': '4px',
+        'md': '8px',
+        'lg': '10px',
+        'xl': '12px',
+        '2xl': '14px'
+      },
+      fontFamily: {
+        'sans': ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'Menlo', 'monospace']
+      }
+    }
+  }
+};</script><style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+      .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+    }
+    ::-webkit-scrollbar { display: none; }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style></head><body class="bg-background font-sans text-on-surface antialiased flex flex-col min-h-full selection:bg-slate-900 selection:text-white"><!-- Executive Stripe-like App Header --><header class="fixed top-0 w-full z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 pt-safe"><div class="h-14 px-4 flex items-center justify-between"><div class="flex items-center gap-3"><button aria-label="Open Navigation" class="w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors active:scale-95" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full'); document.getElementById('drawer-backdrop').classList.remove('opacity-0', 'pointer-events-none');" type="button"><span class="material-symbols-outlined text-[21px]">menu</span></button><div class="flex items-center gap-2"><div class="w-6 h-6 rounded-md bg-slate-900 flex items-center justify-center text-white"><span class="text-[12px] font-bold tracking-tighter">B</span></div><span class="text-[15px] font-semibold text-slate-900 tracking-tight">Biz Assist</span><span class="text-[10px] font-medium tracking-wide uppercase px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 border border-slate-200/70 ml-0.5">Exec</span></div></div><div class="flex items-center gap-1.5"><button aria-label="Search" class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" type="button"><span class="material-symbols-outlined text-[19px]">search</span></button><button aria-label="Notifications" class="relative w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" type="button"><span class="material-symbols-outlined text-[19px]">notifications</span><span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-blue-600 ring-2 ring-white"></span></button><div class="ml-1 pl-1 border-l border-slate-200 flex items-center"><img alt="Profile" class="w-7 h-7 rounded-full object-cover ring-1 ring-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZaRy-voUEC7KYKDXrzfoBs5LxlbDD9dtiN6-GwPTreb9NVpKXFw9QfXj1vawOlKqunU1NMUhrE_wjFNUpdibXRVd8RfavZhOmg9uskwjWuqJqbkM2TGxo_RBnlw62ZIufjLUHB_KBecn9CCRIAb95TcQSaD6Hcj0g1Ei6X7H3nfaNZ81ZwbWYMyW55n0KS05c1UX2hJGwh8MMu88t4urF9FdCdB98h6qyD5w8JWQs"/></div></div></div></header><!-- Drawer Backdrop --><div class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none" id="drawer-backdrop" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full'); this.classList.add('opacity-0', 'pointer-events-none');"></div><!-- Clean Structured Navigation Drawer --><aside class="fixed top-0 bottom-0 left-0 w-[82%] max-w-[320px] z-50 bg-white border-r border-slate-200 shadow-xl flex flex-col justify-between transition-transform duration-300 ease-out -translate-x-full pt-safe pb-safe" id="mobile-drawer"><div class="flex flex-col flex-1 overflow-y-auto px-4 py-4"><div class="flex items-center justify-between pb-3 mb-2 border-b border-slate-100"><div class="flex items-center gap-2.5"><div class="w-6 h-6 rounded-md bg-slate-900 flex items-center justify-center text-white"><span class="text-[12px] font-bold">B</span></div><span class="text-[15px] font-semibold text-slate-900">Biz Assist</span></div><button class="w-8 h-8 flex items-center justify-center rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');" type="button"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="py-2.5 px-3 bg-slate-50 border border-slate-200/80 rounded-lg mb-4 flex items-center gap-2.5"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZaRy-voUEC7KYKDXrzfoBs5LxlbDD9dtiN6-GwPTreb9NVpKXFw9QfXj1vawOlKqunU1NMUhrE_wjFNUpdibXRVd8RfavZhOmg9uskwjWuqJqbkM2TGxo_RBnlw62ZIufjLUHB_KBecn9CCRIAb95TcQSaD6Hcj0g1Ei6X7H3nfaNZ81ZwbWYMyW55n0KS05c1UX2hJGwh8MMu88t4urF9FdCdB98h6qyD5w8JWQs"/><div class="flex flex-col overflow-hidden"><span class="text-[13px] font-semibold text-slate-900 truncate">Executive Workspace</span><span class="text-[11px] text-slate-500 font-medium">Enterprise • US-East</span></div></div><div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400 px-2 mb-1.5">Workspace</div><nav class="flex flex-col gap-0.5"><a aria-current="page" class="flex items-center gap-2.5 px-2.5 py-2 rounded-md bg-slate-900 text-white text-[13px] font-medium" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span>Overview</span></a><a class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors text-[13px] font-medium" data-path="ai-assistant" href="#"><span class="material-symbols-outlined text-[18px] text-slate-400">forum</span><span>Executive Assistant</span></a><a class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors text-[13px] font-medium" data-path="data-analysis" href="#"><span class="material-symbols-outlined text-[18px] text-slate-400">query_stats</span><span>Analytics &amp; Metrics</span></a><a class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors text-[13px] font-medium" data-path="reports" href="#"><span class="material-symbols-outlined text-[18px] text-slate-400">description</span><span>Reports &amp; Digests</span></a><div class="my-2 border-t border-slate-100"></div><div class="text-[10px] font-semibold uppercase tracking-wider text-slate-400 px-2 mb-1.5">Settings</div><a class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors text-[13px] font-medium" data-path="user-management" href="#"><span class="material-symbols-outlined text-[18px] text-slate-400">group</span><span>Team &amp; Access</span></a><a class="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors text-[13px] font-medium" data-path="settings" href="#"><span class="material-symbols-outlined text-[18px] text-slate-400">settings</span><span>Preferences</span></a></nav></div><div class="p-3 border-t border-slate-100"><a class="flex items-center gap-2 px-2.5 py-2 rounded-md text-slate-600 hover:text-rose-600 hover:bg-rose-50/60 transition-colors text-[13px] font-medium" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Sign out</span></a></div></aside><main class="flex flex-col relative w-full pt-14 pb-20 bg-slate-50 min-h-screen"><div class="flex flex-col w-full px-4 pt-4 pb-6 space-y-4">
+<!-- Editorial Header & Status Bar -->
+<section class="flex flex-col gap-2 pt-1">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-medium text-slate-500 uppercase tracking-wider">Executive Overview • Q3 Week 8</span>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-100 border border-slate-200/70 text-slate-600">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-[11px] font-medium">Synced 2m ago</span>
+</div>
+</div>
+<div>
+<h1 class="text-[22px] font-semibold text-slate-900 tracking-tight leading-snug">Welcome back, Sarah</h1>
+<p class="text-[13px] text-slate-500 mt-0.5 leading-relaxed">Here is your operational pulse across 4 regions for today, Aug 24.</p>
+</div>
+</section>
+<!-- Restrained Command Pill Bar -->
+<section class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 -mx-4 px-4">
+<button class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 text-white text-[12px] font-medium shadow-sm hover:bg-slate-800 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[15px]">chat_bubble_outline</span>
+<span>Ask Assistant</span>
+</button>
+<button class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 text-[12px] font-medium hover:bg-slate-50 active:scale-95 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.02)]" type="button">
+<span class="material-symbols-outlined text-[15px] text-slate-500">upload</span>
+<span>Import Dataset</span>
+</button>
+<button class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 text-[12px] font-medium hover:bg-slate-50 active:scale-95 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.02)]" type="button">
+<span class="material-symbols-outlined text-[15px] text-slate-500">summarize</span>
+<span>Generate Report</span>
+</button>
+<button class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 text-[12px] font-medium hover:bg-slate-50 active:scale-95 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.02)]" type="button">
+<span class="material-symbols-outlined text-[15px] text-slate-500">tune</span>
+<span>Audit Rules</span>
+</button>
+</section>
+<!-- 2x2 Clean Structured Metrics Grid -->
+<section class="grid grid-cols-2 gap-3">
+<!-- Card 1: Operational Efficiency -->
+<div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.03)] hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Efficiency</span>
+<span class="inline-flex items-center gap-0.5 text-[11px] font-medium text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100">
+<span class="material-symbols-outlined text-[12px]">trending_up</span>
+            +6.8%
+          </span>
+</div>
+<div class="mt-2.5">
+<div class="text-[23px] font-bold text-slate-900 tracking-tight leading-none">94.2%</div>
+<div class="flex items-center justify-between text-[11px] text-slate-500 mt-2 pt-2 border-t border-slate-100">
+<span>Target: 90%</span>
+<span class="text-slate-400">SLA Met</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Customer Sentiment -->
+<div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.03)] hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Sentiment</span>
+<span class="inline-flex items-center gap-0.5 text-[11px] font-medium text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100">
+<span class="material-symbols-outlined text-[12px]">arrow_upward</span>
+            +0.3
+          </span>
+</div>
+<div class="mt-2.5">
+<div class="text-[23px] font-bold text-slate-900 tracking-tight leading-none flex items-baseline gap-1">
+            4.8 <span class="text-[13px] font-normal text-slate-400">/ 5.0</span>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-500 mt-2 pt-2 border-t border-slate-100">
+<span>3.4k reviews</span>
+<span class="text-slate-400">Top decile</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Velocity Sparkline -->
+<div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.03)] hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Tasks</span>
+<span class="text-[11px] font-medium text-slate-500">WTD</span>
+</div>
+<div class="mt-2 flex items-baseline justify-between">
+<div class="text-[23px] font-bold text-slate-900 tracking-tight leading-none">142</div>
+<div class="w-14 h-5">
+<svg class="w-full h-full overflow-visible" fill="none" viewbox="0 0 58 18">
+<path d="M2 14 L11 12 L20 15 L29 8 L38 10 L47 4 L56 5" stroke="#2563eb" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"></path>
+<circle cx="56" cy="5" fill="#2563eb" r="2"></circle>
+</svg>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-500 mt-2 pt-2 border-t border-slate-100">
+<span>Velocity +12%</span>
+<span class="text-slate-400">18 pending</span>
+</div>
+</div>
+<!-- Card 4: Actionable Recommendations -->
+<div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-[0_1px_3px_rgba(15,23,42,0.03)] hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Directives</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-blue-50 text-blue-700 border border-blue-200/60">Ready</span>
+</div>
+<div class="mt-2.5">
+<div class="text-[23px] font-bold text-slate-900 tracking-tight leading-none">38</div>
+<div class="flex items-center justify-between text-[11px] text-slate-500 mt-2 pt-2 border-t border-slate-100">
+<span>4 high priority</span>
+<span class="text-blue-600 font-medium hover:underline cursor-pointer">Review</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Strategic Recommendation Callout (Linear/Stripe Bespoke style) -->
+<section class="rounded-xl border border-slate-200 bg-white p-4 shadow-[0_1px_3px_rgba(15,23,42,0.03)] flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Operational Directive</span>
+</div>
+<span class="text-[11px] font-medium text-slate-400">+18% projected ROI</span>
+</div>
+<div class="space-y-1">
+<h2 class="text-[14px] font-semibold text-slate-900 tracking-tight">Automate client onboarding cadences</h2>
+<p class="text-[12px] text-slate-600 leading-relaxed">
+          Transitioning current high-touch touchpoints into automated workflow rules recovers approximately <strong class="text-slate-900 font-semibold">4.5 hrs/week</strong> per account manager.
+        </p>
+</div>
+<div class="flex items-center gap-2 pt-1 border-t border-slate-100">
+<button class="inline-flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-[12px] font-medium active:scale-95 transition-all" onclick="this.innerHTML='&lt;span class=\'material-symbols-outlined text-[15px]\'&gt;check&lt;/span&gt; Executed'; this.classList.remove('bg-slate-900'); this.classList.add('bg-emerald-700');" type="button">
+<span class="material-symbols-outlined text-[15px]">play_circle</span>
+<span>Apply Workflow</span>
+</button>
+<button class="inline-flex items-center justify-center gap-1 py-1.5 px-3 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-[12px] font-medium transition-colors" type="button">
+<span>Review specs</span>
+<span class="material-symbols-outlined text-[14px] text-slate-400">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Weekly Performance Chart (Precise & Tailored) -->
+<section class="rounded-xl bg-white border border-slate-200 p-4 shadow-[0_1px_3px_rgba(15,23,42,0.03)] flex flex-col gap-3">
+<div class="flex items-center justify-between pb-2 border-b border-slate-100">
+<div>
+<h2 class="text-[14px] font-semibold text-slate-900">Weekly Health Index</h2>
+<p class="text-[11px] text-slate-500 mt-0.5">Composite score across output and delivery SLAs</p>
+</div>
+<!-- Period Segmented Control -->
+<div class="inline-flex items-center p-0.5 rounded-lg bg-slate-100 border border-slate-200/80">
+<button class="period-btn px-2.5 py-1 rounded-md text-[11px] font-medium text-slate-500 hover:text-slate-900 transition-colors" onclick="setChartPeriod('day', this)" type="button">D</button>
+<button class="period-btn px-2.5 py-1 rounded-md text-[11px] font-semibold text-slate-900 bg-white shadow-xs transition-colors" onclick="setChartPeriod('week', this)" type="button">W</button>
+<button class="period-btn px-2.5 py-1 rounded-md text-[11px] font-medium text-slate-500 hover:text-slate-900 transition-colors" onclick="setChartPeriod('month', this)" type="button">M</button>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-600 bg-slate-50/80 px-2.5 py-1.5 rounded-md border border-slate-100">
+<span class="font-medium text-slate-900">Thursday Peak: 96.8 Index</span>
+<span class="text-blue-600 font-medium">9.4% above median target</span>
+</div>
+<!-- Crisp Minimal Column Chart -->
+<div class="flex items-end justify-between h-36 pt-4 pb-1 px-1">
+<!-- Monday -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-full flex items-end justify-center h-24">
+<div class="w-3 rounded-t-sm bg-slate-200 h-[55%]"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-400">M</span>
+</div>
+<!-- Tuesday -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-full flex items-end justify-center h-24">
+<div class="w-3 rounded-t-sm bg-slate-200 h-[68%]"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-400">T</span>
+</div>
+<!-- Wednesday -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-full flex items-end justify-center h-24">
+<div class="w-3 rounded-t-sm bg-blue-300 h-[74%]"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-400">W</span>
+</div>
+<!-- Thursday (Peak Highlight) -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-full flex items-end justify-center h-24 relative">
+<div class="w-3 rounded-t-sm bg-blue-600 h-[96%]"></div>
+</div>
+<span class="text-[10px] font-bold text-slate-900">T</span>
+</div>
+<!-- Friday -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-full flex items-end justify-center h-24">
+<div class="w-3 rounded-t-sm bg-blue-400 h-[82%]"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-400">F</span>
+</div>
+<!-- Saturday -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-full flex items-end justify-center h-24">
+<div class="w-3 rounded-t-sm bg-slate-100 h-[36%]"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-300">S</span>
+</div>
+<!-- Sunday -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-full flex items-end justify-center h-24">
+<div class="w-3 rounded-t-sm bg-slate-100 h-[40%]"></div>
+</div>
+<span class="text-[10px] font-medium text-slate-300">S</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-xs bg-blue-600"></span>
+<span>Actual throughput</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-xs bg-slate-200"></span>
+<span>Baseline average</span>
+</div>
+</div>
+</section>
+<!-- Executive Strategy Card with Clean Image Header -->
+<section class="rounded-xl border border-slate-200 overflow-hidden bg-white shadow-[0_1px_3px_rgba(15,23,42,0.03)]">
+<div class="h-28 w-full bg-cover bg-center relative" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrZqlxyKA8UTGjG5SmDR-UgQpmisfShM0h791PYlm_w3ZKT-dFVhC0dtz9u9jHQw0o5GH3oLKMjMPsAhFqGvgDMWDTstqOZaQUquzoJ8c643QNRbHXftW1n1yDtXxCca-mnohe8OeAZIEj58djWi_9ohV8KSoplCWelnJjaKphqrejT1vWke0Wo1FgiZViTETlhDUj1vvHby0UrIXHGO-639ltqgAbYw-1XY0eUf3D')">
+<div class="absolute inset-0 bg-slate-900/60 backdrop-blur-[1px]"></div>
+<div class="absolute inset-0 p-3 flex flex-col justify-between text-white">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-white/20 backdrop-blur-md">Briefing Document</span>
+<span class="text-[11px] text-slate-200 font-mono">PDF • 14 pages</span>
+</div>
+<div>
+<h3 class="text-[15px] font-bold text-white tracking-tight">Executive Quarterly Outlook</h3>
+<p class="text-[11px] text-slate-200 mt-0.5">Macro scenarios and headcount allocation models</p>
+</div>
+</div>
+</div>
+<div class="px-3.5 py-2.5 bg-white flex items-center justify-between">
+<span class="text-[11px] text-slate-500">Prepared by Strategy Office</span>
+<a class="inline-flex items-center gap-1 text-[12px] font-semibold text-slate-900 hover:text-blue-600 transition-colors" href="#">
+<span>Open brief</span>
+<span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- Executive Summaries Feed -->
+<section class="space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Briefing Feed</span>
+<span class="text-[11px] text-slate-400">• Today</span>
+</div>
+<a class="text-[12px] font-medium text-slate-600 hover:text-slate-900 inline-flex items-center gap-0.5" href="#">
+          View archive
+          <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</div>
+<!-- Summary Card 1: Operations -->
+<article class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-[0_1px_3px_rgba(15,23,42,0.03)] hover:border-slate-300 transition-colors space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200/60 uppercase tracking-wide">Operations</span>
+<span class="text-[11px] text-slate-400">2h ago</span>
+</div>
+<button aria-label="Options" class="text-slate-400 hover:text-slate-600" type="button">
+<span class="material-symbols-outlined text-[16px]">more_horiz</span>
+</button>
+</div>
+<h3 class="text-[13px] font-semibold text-slate-900">Weekly Operations Digest</h3>
+<p class="text-[12px] text-slate-600 leading-relaxed">
+          Supply chain bottleneck resolved in Midwest regional depot. Client delivery SLA improved by <span class="font-medium text-slate-900">14%</span> across all regional depots.
+        </p>
+<div class="pt-1.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
+<span class="text-slate-500 font-medium inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          3 sub-actions approved
+        </span>
+<span class="text-blue-600 font-medium hover:underline flex items-center">Details</span>
+</div>
+</article>
+<!-- Summary Card 2: Growth -->
+<article class="p-3.5 rounded-xl bg-white border border-slate-200 shadow-[0_1px_3px_rgba(15,23,42,0.03)] hover:border-slate-300 transition-colors space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200/60 uppercase tracking-wide">Growth</span>
+<span class="text-[11px] text-slate-400">Yesterday</span>
+</div>
+<button aria-label="Options" class="text-slate-400 hover:text-slate-600" type="button">
+<span class="material-symbols-outlined text-[16px]">more_horiz</span>
+</button>
+</div>
+<h3 class="text-[13px] font-semibold text-slate-900">Q3 Sales Pipeline Brief</h3>
+<p class="text-[12px] text-slate-600 leading-relaxed">
+          Enterprise inbound demo volume increased <span class="font-medium text-slate-900">28%</span> following product release. Average sales conversion velocity shortened by 3 full days.
+        </p>
+<div class="pt-1.5 border-t border-slate-100 flex items-center justify-between text-[11px]">
+<span class="text-slate-500 font-medium">ARR model adjusted +$84k</span>
+<span class="text-blue-600 font-medium hover:underline flex items-center">Details</span>
+</div>
+</article>
+</section>
+<!-- Bottom Executive Quick Query Bar -->
+<div class="pt-1">
+<div class="flex items-center justify-between p-3 rounded-xl bg-slate-900 text-white shadow-md">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center text-slate-300 border border-slate-700">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[12px] font-medium text-white">Ask Biz Assist</span>
+<span class="text-[10px] text-slate-400">Query reports, telemetry &amp; logs</span>
+</div>
+</div>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white text-slate-900 text-[11px] font-semibold shadow-xs hover:bg-slate-100 active:scale-95 transition-all" type="button">
+<span>Query</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  function setChartPeriod(period, btn) {
+    const buttons = document.querySelectorAll('.period-btn');
+    buttons.forEach(b => {
+      b.classList.remove('bg-white', 'text-slate-900', 'shadow-xs', 'font-semibold');
+      b.classList.add('text-slate-500', 'font-medium');
+    });
+    btn.classList.add('bg-white', 'text-slate-900', 'shadow-xs', 'font-semibold');
+    btn.classList.remove('text-slate-500', 'font-medium');
+  }
+</script></main><!-- Executive Linear-Style Minimal Bottom Nav --><nav class="fixed bottom-0 w-full z-40 pb-safe bg-white/95 backdrop-blur-md border-t border-slate-200/90" data-active-classes="text-slate-900 font-semibold"><div class="flex items-center justify-around h-14 px-2"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[54px] min-h-[40px] text-slate-900 font-semibold transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="text-[10px] mt-0.5 tracking-tight">Overview</span></a><a class="flex flex-col items-center justify-center min-w-[54px] min-h-[40px] text-slate-400 hover:text-slate-700 transition-colors" data-path="ai-assistant" href="#"><span class="material-symbols-outlined text-[20px]">forum</span><span class="text-[10px] mt-0.5 tracking-tight">Assistant</span></a><a class="flex flex-col items-center justify-center min-w-[54px] min-h-[40px] text-slate-400 hover:text-slate-700 transition-colors" data-path="data-analysis" href="#"><span class="material-symbols-outlined text-[20px]">query_stats</span><span class="text-[10px] mt-0.5 tracking-tight">Analytics</span></a><a class="flex flex-col items-center justify-center min-w-[54px] min-h-[40px] text-slate-400 hover:text-slate-700 transition-colors" data-path="reports" href="#"><span class="material-symbols-outlined text-[20px]">description</span><span class="text-[10px] mt-0.5 tracking-tight">Reports</span></a><button class="flex flex-col items-center justify-center min-w-[54px] min-h-[40px] text-slate-400 hover:text-slate-700 transition-colors" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full'); document.getElementById('drawer-backdrop').classList.remove('opacity-0', 'pointer-events-none');" type="button"><span class="material-symbols-outlined text-[20px]">menu</span><span class="text-[10px] mt-0.5 tracking-tight">More</span></button></div></nav></body></html>
+
+<!-- Smart Suggestions -->
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta content="mobile_tab" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#5b598c",
+            "error": "#ba1a1a",
+            "surface-dim": "#d2d9f4",
+            "primary-fixed": "#e3dfff",
+            "tertiary-container": "#14007a",
+            "tertiary": "#050039",
+            "outline-variant": "#c8c5d0",
+            "background": "#faf8ff",
+            "secondary": "#0051d5",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#316bf3",
+            "on-surface": "#131b2e",
+            "on-error": "#ffffff",
+            "on-tertiary-container": "#7d77ff",
+            "surface-variant": "#dae2fd",
+            "primary-container": "#1e1b4b",
+            "on-secondary-container": "#fefcff",
+            "primary-fixed-dim": "#c4c1fb",
+            "surface": "#faf8ff",
+            "surface-container-high": "#e2e7ff",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#eef0ff",
+            "on-tertiary-fixed-variant": "#372abf",
+            "secondary-fixed": "#dbe1ff",
+            "surface-container": "#eaedff",
+            "on-surface-variant": "#47464f",
+            "on-primary-fixed-variant": "#444173",
+            "outline": "#787680",
+            "surface-bright": "#faf8ff",
+            "tertiary-fixed": "#e3dfff",
+            "on-secondary-fixed-variant": "#003ea8",
+            "inverse-primary": "#c4c1fb",
+            "surface-container-highest": "#dae2fd",
+            "on-primary-container": "#8683ba",
+            "on-secondary-fixed": "#00174b",
+            "secondary-fixed-dim": "#b4c5ff",
+            "on-tertiary-fixed": "#100069",
+            "tertiary-fixed-dim": "#c3c0ff",
+            "primary": "#070235",
+            "on-background": "#131b2e",
+            "error-container": "#ffdad6",
+            "surface-container-low": "#f2f3ff",
+            "on-primary-fixed": "#181445",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#283044"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "headline-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "display-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "label-sm": ["Inter", "sans-serif"],
+            "label-md": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+      .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+    body { min-height: max(884px, 100dvh); }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] font-body-md text-[#0F172A] antialiased flex flex-col min-h-full selection:bg-[#E2E8F0]">
+<!-- Fixed Top Header -->
+<header class="fixed top-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-[#E2E8F0] pt-safe">
+<div class="h-14 px-4 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<button aria-label="Open Navigation Menu" class="w-9 h-9 flex items-center justify-center rounded border border-[#E2E8F0] text-[#334155] hover:bg-[#F1F5F9] transition-colors active:scale-95" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full'); document.getElementById('drawer-backdrop').classList.remove('opacity-0', 'pointer-events-none');" type="button">
+<span class="material-symbols-outlined text-[20px]">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<img alt="Biz Assist Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxd5kGaNl0JFubd9VTaUpyrfUWT4HVlV_ThHfxlmBpzZoYGjoNpeeBlqQgrYNOfGDBFvud1Rl7O6fZy8SzXPH_47WK-0n10MKSmyCDhBxbY3DHDDUVJB4fe46RwWj62ri4jQWFTMU9-EPYsi5arfgwnQois83bQmn_WNTONfO3rmmo4NcCGjVL7IGeQioslro3iIJ1J__voZOfO0EAEig9lLzi5afmNa0I3vjLQhsu"/>
+<span class="font-headline-sm text-[15px] font-bold text-[#0F172A] tracking-tight">Biz Assist</span>
+<span class="text-[10px] uppercase font-semibold tracking-wider px-1.5 py-0.5 rounded bg-[#F1F5F9] text-[#475569] border border-[#E2E8F0]">Advisory</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Notifications" class="w-9 h-9 flex items-center justify-center rounded border border-[#E2E8F0] text-[#475569] hover:bg-[#F1F5F9] transition-colors active:scale-95 relative" type="button">
+<span class="material-symbols-outlined text-[19px]">notifications</span>
+<span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-[#0051d5]"></span>
+</button>
+<div class="w-8 h-8 rounded border border-[#CBD5E1] overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZaRy-voUEC7KYKDXrzfoBs5LxlbDD9dtiN6-GwPTreb9NVpKXFw9QfXj1vawOlKqunU1NMUhrE_wjFNUpdibXRVd8RfavZhOmg9uskwjWuqJqbkM2TGxo_RBnlw62ZIufjLUHB_KBecn9CCRIAb95TcQSaD6Hcj0g1Ei6X7H3nfaNZ81ZwbWYMyW55n0KS05c1UX2hJGwh8MMu88t4urF9FdCdB98h6qyD5w8JWQs"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Drawer Backdrop -->
+<div class="fixed inset-0 z-50 bg-[#0F172A]/40 backdrop-blur-xs transition-opacity duration-200 opacity-0 pointer-events-none" id="drawer-backdrop" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full'); this.classList.add('opacity-0', 'pointer-events-none');"></div>
+<!-- Mobile Drawer -->
+<aside class="fixed top-0 bottom-0 left-0 w-[82%] max-w-[320px] z-50 bg-white border-r border-[#E2E8F0] shadow-xl flex flex-col justify-between transition-transform duration-200 ease-out -translate-x-full pt-safe pb-safe" id="mobile-drawer">
+<div class="flex flex-col flex-1 overflow-y-auto px-4 py-4">
+<div class="flex items-center justify-between pb-3 border-b border-[#F1F5F9] mb-3">
+<div class="flex items-center gap-2">
+<img alt="Biz Assist Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxd5kGaNl0JFubd9VTaUpyrfUWT4HVlV_ThHfxlmBpzZoYGjoNpeeBlqQgrYNOfGDBFvud1Rl7O6fZy8SzXPH_47WK-0n10MKSmyCDhBxbY3DHDDUVJB4fe46RwWj62ri4jQWFTMU9-EPYsi5arfgwnQois83bQmn_WNTONfO3rmmo4NcCGjVL7IGeQioslro3iIJ1J__voZOfO0EAEig9lLzi5afmNa0I3vjLQhsu"/>
+<span class="font-headline-sm text-sm font-bold text-[#0F172A]">Biz Assist Advisory</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded text-[#64748B] hover:bg-[#F1F5F9]" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<div class="p-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded mb-4 flex items-center gap-2.5">
+<img alt="Profile" class="w-9 h-9 rounded object-cover border border-[#CBD5E1]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZaRy-voUEC7KYKDXrzfoBs5LxlbDD9dtiN6-GwPTreb9NVpKXFw9QfXj1vawOlKqunU1NMUhrE_wjFNUpdibXRVd8RfavZhOmg9uskwjWuqJqbkM2TGxo_RBnlw62ZIufjLUHB_KBecn9CCRIAb95TcQSaD6Hcj0g1Ei6X7H3nfaNZ81ZwbWYMyW55n0KS05c1UX2hJGwh8MMu88t4urF9FdCdB98h6qyD5w8JWQs"/>
+<div class="flex flex-col overflow-hidden">
+<span class="font-label-md text-xs font-semibold text-[#0F172A] truncate">Executive Strategy Board</span>
+<span class="font-label-sm text-[11px] text-[#0051d5] font-medium">Enterprise Advisory Tier</span>
+</div>
+</div>
+<div class="text-[10px] font-semibold text-[#64748B] px-1 mb-1.5 uppercase tracking-wider">Navigation</div>
+<nav class="flex flex-col gap-0.5">
+<a class="flex items-center gap-2.5 px-2.5 py-2 rounded text-[#475569] hover:bg-[#F1F5F9] transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span><span class="text-xs font-medium">Dashboard</span></a>
+<a class="flex items-center gap-2.5 px-2.5 py-2 rounded text-[#475569] hover:bg-[#F1F5F9] transition-colors" data-path="ai-assistant" href="#"><span class="material-symbols-outlined text-[18px]">psychology</span><span class="text-xs font-medium">Strategy Copilot</span></a>
+<a class="flex items-center gap-2.5 px-2.5 py-2 rounded text-[#475569] hover:bg-[#F1F5F9] transition-colors" data-path="data-analysis" href="#"><span class="material-symbols-outlined text-[18px]">query_stats</span><span class="text-xs font-medium">Analytics &amp; Modeling</span></a>
+<a aria-current="page" class="flex items-center gap-2.5 px-2.5 py-2 rounded bg-[#0F172A] text-white font-medium" data-path="smart-suggestions" href="#"><span class="material-symbols-outlined text-[18px]">lightbulb</span><span class="text-xs">Strategic Briefs</span></a>
+<a class="flex items-center gap-2.5 px-2.5 py-2 rounded text-[#475569] hover:bg-[#F1F5F9] transition-colors" data-path="reports" href="#"><span class="material-symbols-outlined text-[18px]">summarize</span><span class="text-xs font-medium">Executive Reports</span></a>
+</nav>
+</div>
+<div class="p-3 border-t border-[#E2E8F0] bg-[#FAFAFA]">
+<a class="flex items-center gap-2 px-2 py-2 rounded text-[#991B1B] hover:bg-[#FEF2F2] transition-colors text-xs font-medium" data-path="login" href="#">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Surface -->
+<main class="flex flex-col relative w-full pt-14 pb-20 bg-[#F8FAFC] min-h-screen">
+<div class="flex flex-col w-full px-4 py-4 gap-4">
+<!-- Executive Header -->
+<section class="flex flex-col gap-1.5 pt-1">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded border border-[#E2E8F0] bg-white text-[#475569]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#0051d5]"></span>
+<span class="font-label-sm text-[10px] tracking-wider uppercase font-semibold text-[#334155]">Strategic Advisory Dispatch</span>
+</div>
+<span class="text-[11px] font-mono text-[#64748B]">Q3 Review · Cycle 14</span>
+</div>
+<h1 class="font-headline-lg text-[22px] font-bold text-[#0F172A] tracking-tight leading-tight mt-1">Operational &amp; Growth Levers</h1>
+<p class="font-body-md text-xs text-[#475569] leading-relaxed">System-generated interventions vetted against historical enterprise KPIs and workflow latency patterns.</p>
+<!-- Live Status Bar -->
+<div class="flex items-center justify-between text-xs px-3 py-2 rounded bg-white border border-[#E2E8F0] mt-1 shadow-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-[#0051d5]">verified</span>
+<span class="text-[#334155] font-medium text-[11px]"><strong class="text-[#0F172A] font-semibold">3 Active Levers</strong> pending authorization</span>
+</div>
+<span class="text-[11px] font-medium text-[#64748B]">94% Confidence</span>
+</div>
+</section>
+<!-- Horizontal Categorical Filter -->
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 -mx-4 px-4" id="filter-pill-group">
+<button class="filter-btn active-pill shrink-0 px-3 py-1.5 rounded text-xs font-semibold bg-[#0F172A] text-white border border-[#0F172A] transition-colors" data-category="all" type="button">
+          All Proposals (3)
+        </button>
+<button class="filter-btn shrink-0 px-3 py-1.5 rounded text-xs font-medium bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-colors" data-category="growth" type="button">
+          Client Retention &amp; Growth
+        </button>
+<button class="filter-btn shrink-0 px-3 py-1.5 rounded text-xs font-medium bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-colors" data-category="operational" type="button">
+          Workflow Automation
+        </button>
+<button class="filter-btn shrink-0 px-3 py-1.5 rounded text-xs font-medium bg-white text-[#475569] border border-[#E2E8F0] hover:bg-[#F8FAFC] transition-colors" data-category="governance" type="button">
+          Governance &amp; Ops
+        </button>
+</div>
+<!-- Financial / Operational Cumulative Scoreboard -->
+<section class="rounded border border-[#E2E8F0] bg-white p-3.5 shadow-xs">
+<div class="flex items-center justify-between pb-3 border-b border-[#F1F5F9]">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-[#F1F5F9] flex items-center justify-center text-[#0F172A]">
+<span class="material-symbols-outlined text-[15px]">analytics</span>
+</div>
+<span class="font-headline-sm text-xs font-bold uppercase tracking-wider text-[#334155]">Projected Cumulative Upside</span>
+</div>
+<span class="font-mono text-[10px] text-[#64748B] bg-[#F8FAFC] px-1.5 py-0.5 rounded border border-[#E2E8F0]">Run-Rate Basis</span>
+</div>
+<div class="grid grid-cols-2 divide-x divide-[#F1F5F9] py-3">
+<div class="pr-3">
+<div class="flex items-center justify-between">
+<span class="text-[11px] text-[#64748B] font-medium">Reclaimed Capacity</span>
+<span class="text-[10px] font-mono text-[#16A34A] font-semibold">+34% vs Base</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-lg text-2xl font-bold tracking-tight text-[#0F172A]">46.0</span>
+<span class="text-xs font-medium text-[#64748B]">hrs / mo</span>
+</div>
+<span class="text-[10px] text-[#64748B] block mt-1">Equivalent to 0.3 FTE equivalent</span>
+</div>
+<div class="pl-3">
+<div class="flex items-center justify-between">
+<span class="text-[11px] text-[#64748B] font-medium">ARR Capital Protected</span>
+<span class="text-[10px] font-mono text-[#0051d5] font-semibold">Tier 1 Target</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-lg text-2xl font-bold tracking-tight text-[#0F172A]">$14.2k</span>
+<span class="text-xs font-medium text-[#64748B]">ARR</span>
+</div>
+<span class="text-[10px] text-[#64748B] block mt-1">Based on 90-day churn modeling</span>
+</div>
+</div>
+<!-- Progress Tracking Rule -->
+<div class="pt-2.5 border-t border-[#F1F5F9] flex flex-col gap-1.5">
+<div class="flex items-center justify-between text-[11px]">
+<span class="text-[#475569] font-medium">Pipeline Implementation Velocity</span>
+<span class="font-mono font-semibold text-[#0F172A]">82% Achieved</span>
+</div>
+<div class="w-full h-1.5 bg-[#F1F5F9] rounded overflow-hidden">
+<div class="h-full bg-[#0F172A] rounded" style="width: 82%;"></div>
+</div>
+</div>
+</section>
+<!-- Recommendation Stream: Structured Executive Briefs -->
+<section class="flex flex-col gap-3.5" id="suggestions-container">
+<!-- Brief 1: Self-Service Onboarding -->
+<article class="suggestion-card rounded border border-[#E2E8F0] bg-white p-3.5 shadow-xs flex flex-col transition-all hover:border-[#CBD5E1]" data-category="growth">
+<!-- Meta Header -->
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#EFF6FF] text-[#1D4ED8] border border-[#DBEAFE]">
+                Workflow Automation
+              </span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#F1F5F9] text-[#475569] border border-[#E2E8F0]">
+                Dept: Sales &amp; Growth
+              </span>
+</div>
+<button aria-label="Bookmark suggestion" class="text-[#94A3B8] hover:text-[#0F172A] p-0.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+</button>
+</div>
+<!-- Title -->
+<h2 class="font-headline-md text-[15px] font-bold text-[#0F172A] tracking-tight leading-snug">
+            Automate B2B Self-Service Client Onboarding
+          </h2>
+<!-- Executive Abstract -->
+<p class="font-body-md text-xs text-[#334155] mt-1.5 leading-relaxed">
+            Audit reveals a <strong class="font-semibold text-[#0F172A]">38% drop-off threshold</strong> during manual KYC and scoping intake. Introducing an asynchronous AI intake engine compresses cycle times and reduces support friction.
+          </p>
+<!-- Structured Before/After Quant Card -->
+<div class="grid grid-cols-2 gap-2 my-3 p-2.5 rounded bg-[#F8FAFC] border border-[#E2E8F0]">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-semibold tracking-wider text-[#64748B]">Current State</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="text-sm font-bold text-[#64748B] line-through font-mono">14.2 Days</span>
+</div>
+<span class="text-[10px] text-[#94A3B8]">Manual questionnaire flow</span>
+</div>
+<div class="flex flex-col border-l border-[#E2E8F0] pl-2.5">
+<span class="text-[10px] uppercase font-semibold tracking-wider text-[#0051d5]">Targeted State</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="text-sm font-bold text-[#0F172A] font-mono">3.1 Days</span>
+<span class="text-[10px] font-semibold text-[#16A34A]">-78% Latency</span>
+</div>
+<span class="text-[10px] text-[#475569]">Automated document validation</span>
+</div>
+</div>
+<!-- Human Advisory Note / Curation Tag -->
+<div class="flex items-start gap-2 text-xs py-1.5 px-2 rounded bg-white border border-[#E2E8F0] mb-3">
+<span class="material-symbols-outlined text-[15px] text-[#64748B] shrink-0 mt-0.5">account_circle</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-[#64748B]">Vetted by Operations Principal · Confidence 92%</span>
+<span class="text-[11px] text-[#334155] font-medium leading-tight">Recommended for immediate rollout to Tier 2 accounts.</span>
+</div>
+</div>
+<!-- Action Pair -->
+<div class="flex items-center gap-2 pt-1 border-t border-[#F1F5F9]">
+<button class="flex-1 py-2 px-3 rounded bg-[#0F172A] text-white text-xs font-semibold hover:bg-[#1E293B] active:scale-[0.99] transition-all flex items-center justify-center gap-1.5" type="button">
+<span>Execute Playbook</span>
+<span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+</button>
+<button class="py-2 px-3 rounded border border-[#CBD5E1] bg-white text-[#334155] text-xs font-semibold hover:bg-[#F8FAFC] active:scale-[0.99] transition-all flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[14px] text-[#64748B]">tune</span>
+<span>Model Risk</span>
+</button>
+</div>
+</article>
+<!-- Brief 2: Async Status Digests -->
+<article class="suggestion-card rounded border border-[#E2E8F0] bg-white p-3.5 shadow-xs flex flex-col transition-all hover:border-[#CBD5E1]" data-category="operational">
+<!-- Meta Header -->
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#F1F5F9] text-[#334155] border border-[#E2E8F0]">
+                Internal Efficiency
+              </span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#F1F5F9] text-[#475569] border border-[#E2E8F0]">
+                Dept: Cross-Functional
+              </span>
+</div>
+<button aria-label="Bookmark suggestion" class="text-[#94A3B8] hover:text-[#0F172A] p-0.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+</button>
+</div>
+<!-- Title -->
+<h2 class="font-headline-md text-[15px] font-bold text-[#0F172A] tracking-tight leading-snug">
+            Consolidate Recurring Cross-Department Syncs
+          </h2>
+<!-- Executive Abstract -->
+<p class="font-body-md text-xs text-[#334155] mt-1.5 leading-relaxed">
+            Calendar analytics report <strong class="font-semibold text-[#0F172A]">6.4 engineering hours weekly</strong> dedicated to status relay meetings. Transition to structured asynchronous AI digests synced into core management hubs.
+          </p>
+<!-- Structured Before/After Quant Card -->
+<div class="grid grid-cols-2 gap-2 my-3 p-2.5 rounded bg-[#F8FAFC] border border-[#E2E8F0]">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-semibold tracking-wider text-[#64748B]">Meeting Overhead</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="text-sm font-bold text-[#64748B] font-mono">4 Syncs/wk</span>
+</div>
+<span class="text-[10px] text-[#94A3B8]">High context-switching cost</span>
+</div>
+<div class="flex flex-col border-l border-[#E2E8F0] pl-2.5">
+<span class="text-[10px] uppercase font-semibold tracking-wider text-[#0051d5]">Reclaimed Focus</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="text-sm font-bold text-[#0F172A] font-mono">+25.6 hrs</span>
+<span class="text-[10px] font-semibold text-[#16A34A]">Monthly</span>
+</div>
+<span class="text-[10px] text-[#475569]">Deep work availability</span>
+</div>
+</div>
+<!-- Human Advisory Note / Curation Tag -->
+<div class="flex items-start gap-2 text-xs py-1.5 px-2 rounded bg-white border border-[#E2E8F0] mb-3">
+<span class="material-symbols-outlined text-[15px] text-[#64748B] shrink-0 mt-0.5">fact_check</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-[#64748B]">Audited by Governance Committee · Confidence 96%</span>
+<span class="text-[11px] text-[#334155] font-medium leading-tight">Zero impact on delivery milestone timelines.</span>
+</div>
+</div>
+<!-- Action Pair -->
+<div class="flex items-center gap-2 pt-1 border-t border-[#F1F5F9]">
+<button class="flex-1 py-2 px-3 rounded bg-[#0F172A] text-white text-xs font-semibold hover:bg-[#1E293B] active:scale-[0.99] transition-all flex items-center justify-center gap-1.5" type="button">
+<span>Activate Standup Automation</span>
+<span class="material-symbols-outlined text-[15px]">play_circle</span>
+</button>
+<button class="py-2 px-3 rounded border border-[#CBD5E1] bg-white text-[#334155] text-xs font-semibold hover:bg-[#F8FAFC] active:scale-[0.99] transition-all flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[14px] text-[#64748B]">preview</span>
+<span>Preview Digest</span>
+</button>
+</div>
+</article>
+<!-- Brief 3: Client Health Monitoring -->
+<article class="suggestion-card rounded border border-[#E2E8F0] bg-white p-3.5 shadow-xs flex flex-col transition-all hover:border-[#CBD5E1]" data-category="growth">
+<!-- Meta Header -->
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="flex flex-wrap items-center gap-1.5">
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-[#EFF6FF] text-[#1D4ED8] border border-[#DBEAFE]">
+                Client Retention
+              </span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-[#F1F5F9] text-[#475569] border border-[#E2E8F0]">
+                Dept: Customer Success
+              </span>
+</div>
+<button aria-label="Bookmark suggestion" class="text-[#94A3B8] hover:text-[#0F172A] p-0.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+</button>
+</div>
+<!-- Title -->
+<h2 class="font-headline-md text-[15px] font-bold text-[#0F172A] tracking-tight leading-snug">
+            Proactive Retention Triggers for At-Risk Enterprise Accounts
+          </h2>
+<!-- Executive Abstract -->
+<p class="font-body-md text-xs text-[#334155] mt-1.5 leading-relaxed">
+            Deploy early warning alerts when engagement sinks <strong class="font-semibold text-[#0F172A]">&gt;20% below quarterly median</strong>, enabling preemptive partner check-ins prior to commercial renewal windows.
+          </p>
+<!-- Structured Metric Indicator -->
+<div class="my-3 p-2.5 rounded bg-[#F8FAFC] border border-[#E2E8F0] flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-semibold uppercase tracking-wider text-[#64748B]">Target Capital Preservation</span>
+<span class="font-mono text-xs font-bold text-[#0051d5]">$14,200 ARR</span>
+</div>
+<div class="w-full h-1.5 bg-[#E2E8F0] rounded overflow-hidden">
+<div class="h-full bg-[#0051d5] rounded" style="width: 74%;"></div>
+</div>
+<span class="text-[10px] text-[#64748B]">3 accounts currently matched to engagement drift criteria</span>
+</div>
+<!-- Human Advisory Note / Curation Tag -->
+<div class="flex items-start gap-2 text-xs py-1.5 px-2 rounded bg-white border border-[#E2E8F0] mb-3">
+<span class="material-symbols-outlined text-[15px] text-[#64748B] shrink-0 mt-0.5">verified_user</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-[#64748B]">Strategy Lead Verified · Confidence 89%</span>
+<span class="text-[11px] text-[#334155] font-medium leading-tight">Integrates directly into existing CRM outreach workflows.</span>
+</div>
+</div>
+<!-- Action Button -->
+<div class="flex items-center gap-2 pt-1 border-t border-[#F1F5F9]">
+<button class="flex-1 py-2 px-3 rounded bg-[#0F172A] text-white text-xs font-semibold hover:bg-[#1E293B] active:scale-[0.99] transition-all flex items-center justify-center gap-1.5" type="button">
+<span>Deploy Retention Triggers</span>
+<span class="material-symbols-outlined text-[15px]">rule</span>
+</button>
+</div>
+</article>
+</section>
+<!-- Institutional Advisory Request Box -->
+<aside class="flex items-center justify-between p-3 rounded border border-[#CBD5E1] bg-white shadow-xs">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded border border-[#E2E8F0] bg-[#F8FAFC] flex items-center justify-center text-[#0F172A] shrink-0">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-[#0F172A]">Request Bespoke Diagnostic</span>
+<span class="text-[11px] text-[#64748B]">Run deep multi-variant analysis on custom dataset</span>
+</div>
+</div>
+<button aria-label="Request Diagnostic" class="p-1.5 rounded hover:bg-[#F1F5F9] text-[#0F172A] transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</aside>
+</div>
+<!-- Client-side filtering script -->
+<script>
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('bg-[#0F172A]', 'text-white', 'border-[#0F172A]');
+            b.classList.add('bg-white', 'text-[#475569]', 'border-[#E2E8F0]');
+          });
+          btn.classList.add('bg-[#0F172A]', 'text-white', 'border-[#0F172A]');
+          btn.classList.remove('bg-white', 'text-[#475569]', 'border-[#E2E8F0]');
+
+          const category = btn.getAttribute('data-category');
+          const cards = document.querySelectorAll('.suggestion-card');
+
+          cards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    </script>
+</main>
+<!-- Fixed Bottom Navigation -->
+<nav class="fixed bottom-0 w-full z-40 pb-safe bg-white border-t border-[#E2E8F0]">
+<div class="flex items-center justify-around h-14 px-2">
+<a class="flex flex-col items-center justify-center text-[#64748B] hover:text-[#0F172A] transition-colors py-1" data-path="dashboard" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-label-sm text-[10px] mt-0.5">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#64748B] hover:text-[#0F172A] transition-colors py-1" data-path="ai-assistant" href="#">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+<span class="font-label-sm text-[10px] mt-0.5">Copilot</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#64748B] hover:text-[#0F172A] transition-colors py-1" data-path="data-analysis" href="#">
+<span class="material-symbols-outlined text-[20px]">query_stats</span>
+<span class="font-label-sm text-[10px] mt-0.5">Analysis</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#0F172A] font-semibold py-1" data-path="smart-suggestions" href="#">
+<span class="material-symbols-outlined text-[20px] text-[#0051d5]">lightbulb</span>
+<span class="font-label-sm text-[10px] mt-0.5">Briefs</span>
+</a>
+<button class="flex flex-col items-center justify-center text-[#64748B] hover:text-[#0F172A] transition-colors py-1" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full'); document.getElementById('drawer-backdrop').classList.remove('opacity-0', 'pointer-events-none');" type="button">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+<span class="font-label-sm text-[10px] mt-0.5">More</span>
+</button>
+</div>
+</nav>
+</body></html>
+
+<!-- AI Assistant (Human-Crafted) -->
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-tint": "#5b598c",
+          "error": "#ba1a1a",
+          "surface-dim": "#d2d9f4",
+          "primary-fixed": "#e3dfff",
+          "tertiary-container": "#14007a",
+          "tertiary": "#050039",
+          "outline-variant": "#e2e8f0",
+          "background": "#faf8ff",
+          "secondary": "#0051d5",
+          "on-secondary": "#ffffff",
+          "secondary-container": "#316bf3",
+          "on-surface": "#0f172a",
+          "on-error": "#ffffff",
+          "on-tertiary-container": "#7d77ff",
+          "surface-variant": "#f1f5f9",
+          "primary-container": "#1e1b4b",
+          "on-secondary-container": "#fefcff",
+          "primary-fixed-dim": "#c4c1fb",
+          "surface": "#f8fafc",
+          "surface-container-high": "#e2e8f0",
+          "on-error-container": "#93000a",
+          "surface-container-lowest": "#ffffff",
+          "inverse-on-surface": "#eef0ff",
+          "on-tertiary-fixed-variant": "#372abf",
+          "secondary-fixed": "#dbe1ff",
+          "surface-container": "#f1f5f9",
+          "on-surface-variant": "#475569",
+          "on-primary-fixed-variant": "#444173",
+          "outline": "#94a3b8",
+          "surface-bright": "#ffffff",
+          "tertiary-fixed": "#e3dfff",
+          "on-secondary-fixed-variant": "#003ea8",
+          "inverse-primary": "#c4c1fb",
+          "surface-container-highest": "#e2e8f0",
+          "on-primary-container": "#8683ba",
+          "on-secondary-fixed": "#00174b",
+          "secondary-fixed-dim": "#b4c5ff",
+          "on-tertiary-fixed": "#100069",
+          "tertiary-fixed-dim": "#c3c0ff",
+          "primary": "#0f172a",
+          "on-background": "#0f172a",
+          "error-container": "#fee2e2",
+          "surface-container-low": "#f8fafc",
+          "on-primary-fixed": "#181445",
+          "on-tertiary": "#ffffff",
+          "on-primary": "#ffffff",
+          "inverse-surface": "#1e293b"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.375rem",
+          "xl": "0.5rem",
+          "2xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-xs": "0.25rem",
+          "space-sm": "0.5rem",
+          "margin-mobile": "1rem",
+          "space-xl": "2.5rem",
+          "space-md": "0.875rem",
+          "gutter": "1.25rem",
+          "space-lg": "1.5rem",
+          "gutter-mobile": "0.75rem",
+          "margin": "2rem"
+        },
+        "fontFamily": {
+          "body": ["Inter", "sans-serif"],
+          "headline": ["Plus Jakarta Sans", "sans-serif"]
+        }
+      }
+    }
+  }
+</script><style>
+  @layer base { 
+    html, body { margin: 0; padding: 0; } 
+    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } 
+    .pt-safe { padding-top: env(safe-area-inset-top, 0px); } 
+    main > :first-child { margin-top: 0 !important; } 
+    main > :last-child { margin-bottom: 0 !important; } 
+  } 
+  ::-webkit-scrollbar { display: none; }
+  body {
+    min-height: max(884px, 100dvh);
+  }
+</style></head><body class="bg-surface font-body text-on-surface antialiased flex flex-col min-h-full selection:bg-slate-200 selection:text-slate-900"><header class="fixed top-0 w-full z-40 bg-surface-container-lowest/90 backdrop-blur-md border-b border-slate-200/80 pt-safe"><div class="h-14 px-4 flex items-center justify-between"><div class="flex items-center gap-3"><button class="w-9 h-9 flex items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100 transition-colors active:scale-95" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full'); document.getElementById('drawer-backdrop').classList.remove('opacity-0', 'pointer-events-none');" type="button"><span class="material-symbols-outlined text-[22px]">menu</span></button><div class="flex items-center gap-2"><img alt="Biz Assist Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxd5kGaNl0JFubd9VTaUpyrfUWT4HVlV_ThHfxlmBpzZoYGjoNpeeBlqQgrYNOfGDBFvud1Rl7O6fZy8SzXPH_47WK-0n10MKSmyCDhBxbY3DHDDUVJB4fe46RwWj62ri4jQWFTMU9-EPYsi5arfgwnQois83bQmn_WNTONfO3rmmo4NcCGjVL7IGeQioslro3iIJ1J__voZOfO0EAEig9lLzi5afmNa0I3vjLQhsu"/><span class="font-headline font-semibold text-[15px] text-slate-900 tracking-tight">Biz Assist</span></div></div><div class="flex items-center gap-1.5"><button aria-label="Notifications" class="relative w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 transition-colors active:scale-95" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-slate-900 ring-2 ring-white"></span></button><div class="w-9 h-9 flex items-center justify-center"><img alt="Profile" class="w-7 h-7 rounded-full object-cover ring-1 ring-slate-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZaRy-voUEC7KYKDXrzfoBs5LxlbDD9dtiN6-GwPTreb9NVpKXFw9QfXj1vawOlKqunU1NMUhrE_wjFNUpdibXRVd8RfavZhOmg9uskwjWuqJqbkM2TGxo_RBnlw62ZIufjLUHB_KBecn9CCRIAb95TcQSaD6Hcj0g1Ei6X7H3nfaNZ81ZwbWYMyW55n0KS05c1UX2hJGwh8MMu88t4urF9FdCdB98h6qyD5w8JWQs"/></div></div></div></header><div class="fixed inset-0 z-50 bg-slate-900/30 backdrop-blur-xs transition-opacity duration-300 opacity-0 pointer-events-none" id="drawer-backdrop" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full'); this.classList.add('opacity-0', 'pointer-events-none');"></div><aside class="fixed top-0 bottom-0 left-0 w-[82%] max-w-[320px] z-50 bg-white border-r border-slate-200 shadow-xl flex flex-col justify-between transition-transform duration-300 ease-out -translate-x-full pt-safe pb-safe" id="mobile-drawer"><div class="flex flex-col flex-1 overflow-y-auto px-4 py-4"><div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4"><div class="flex items-center gap-2"><img alt="Biz Assist Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxd5kGaNl0JFubd9VTaUpyrfUWT4HVlV_ThHfxlmBpzZoYGjoNpeeBlqQgrYNOfGDBFvud1Rl7O6fZy8SzXPH_47WK-0n10MKSmyCDhBxbY3DHDDUVJB4fe46RwWj62ri4jQWFTMU9-EPYsi5arfgwnQois83bQmn_WNTONfO3rmmo4NcCGjVL7IGeQioslro3iIJ1J__voZOfO0EAEig9lLzi5afmNa0I3vjLQhsu"/><span class="font-headline font-semibold text-slate-900 text-sm tracking-tight">Biz Assist</span></div><button class="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 transition-colors" onclick="document.getElementById('mobile-drawer').classList.add('-translate-x-full'); document.getElementById('drawer-backdrop').classList.add('opacity-0', 'pointer-events-none');" type="button"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="p-3 bg-slate-50 border border-slate-200/80 rounded-lg mb-4 flex items-center gap-3"><img alt="Profile" class="w-9 h-9 rounded-full object-cover ring-1 ring-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZaRy-voUEC7KYKDXrzfoBs5LxlbDD9dtiN6-GwPTreb9NVpKXFw9QfXj1vawOlKqunU1NMUhrE_wjFNUpdibXRVd8RfavZhOmg9uskwjWuqJqbkM2TGxo_RBnlw62ZIufjLUHB_KBecn9CCRIAb95TcQSaD6Hcj0g1Ei6X7H3nfaNZ81ZwbWYMyW55n0KS05c1UX2hJGwh8MMu88t4urF9FdCdB98h6qyD5w8JWQs"/><div class="flex flex-col overflow-hidden"><span class="font-headline font-medium text-xs text-slate-900 truncate">Executive Workspace</span><span class="text-[11px] text-slate-500 font-medium">Enterprise Core Tier</span></div></div><div class="text-[11px] font-semibold text-slate-400 px-1 mb-1.5 uppercase tracking-wider">Navigation</div><nav class="flex flex-col gap-0.5"><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="text-xs font-medium">Dashboard</span></a><a aria-current="page" class="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-slate-100 text-slate-900 font-semibold" data-path="ai-assistant" href="#"><span class="material-symbols-outlined text-[20px] text-slate-900">chat_bubble_outline</span><span class="text-xs">AI Assistant</span></a><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" data-path="data-analysis" href="#"><span class="material-symbols-outlined text-[20px]">query_stats</span><span class="text-xs font-medium">Data Analysis</span></a><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" data-path="ai-summary" href="#"><span class="material-symbols-outlined text-[20px]">summarize</span><span class="text-xs font-medium">AI Summary</span></a><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" data-path="reports" href="#"><span class="material-symbols-outlined text-[20px]">description</span><span class="text-xs font-medium">Reports</span></a><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" data-path="smart-suggestions" href="#"><span class="material-symbols-outlined text-[20px]">tips_and_updates</span><span class="text-xs font-medium">Smart Suggestions</span></a><div class="my-2 border-t border-slate-100"></div><div class="text-[11px] font-semibold text-slate-400 px-1 mb-1.5 uppercase tracking-wider">Administration</div><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" data-path="user-management" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span class="text-xs font-medium">User Management</span></a><a class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="text-xs font-medium">Settings</span></a></nav></div><div class="p-3 border-t border-slate-100"><a class="flex items-center gap-2 px-3 py-2 rounded-lg text-rose-600 hover:bg-rose-50 transition-colors text-xs font-medium" data-path="login" href="#"><span class="material-symbols-outlined text-[18px]">logout</span><span>Sign out</span></a></div></aside><main class="flex flex-col relative w-full pt-14 pb-20 bg-slate-50/60 min-h-screen"><div class="flex flex-col w-full pb-6">
+<!-- Executive Framing & Context Header -->
+<div class="px-4 py-3 bg-white border-b border-slate-200/75">
+<div class="flex items-center justify-between gap-2 mb-2.5">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="flex items-center justify-center w-7 h-7 rounded-md bg-slate-900 text-white shrink-0">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-headline text-[13px] font-semibold text-slate-900 tracking-tight truncate">Executive Copilot</span>
+<span class="text-slate-300">•</span>
+<span class="text-[11px] font-medium text-slate-500 truncate">Financials &amp; Operations Model</span>
+</div>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-[11px] text-slate-500 truncate">Real-time sync · ERP &amp; Q3 Jira</span>
+</div>
+</div>
+</div>
+<button aria-label="Model Parameters" class="flex items-center gap-1 px-2.5 py-1 rounded-md border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 active:scale-95 transition-all shrink-0 shadow-2xs" type="button">
+<span class="material-symbols-outlined text-[14px] text-slate-500">tune</span>
+<span class="font-headline text-[11px] font-medium">Model 4.1</span>
+</button>
+</div>
+<!-- Minimal Context Pills -->
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+<button class="context-pill shrink-0 px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 font-headline text-[11px] font-medium transition-all hover:border-slate-300 active:scale-95" type="button">
+        General Business
+      </button>
+<button class="context-pill shrink-0 px-2.5 py-1 rounded-md bg-slate-900 text-white border border-slate-900 font-headline text-[11px] font-medium transition-all active:scale-95" type="button">
+        Operations &amp; Logistics
+      </button>
+<button class="context-pill shrink-0 px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 font-headline text-[11px] font-medium transition-all hover:border-slate-300 active:scale-95" type="button">
+        Team &amp; HR
+      </button>
+<button class="context-pill shrink-0 px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-600 font-headline text-[11px] font-medium transition-all hover:border-slate-300 active:scale-95" type="button">
+        Strategy
+      </button>
+</div>
+</div>
+<!-- Chat Stream -->
+<div class="flex flex-col gap-5 px-4 py-5">
+<!-- Subtle Session Stamp -->
+<div class="flex items-center justify-center my-0.5">
+<span class="text-[11px] font-medium text-slate-400 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200/60">
+        Today · Strategic Working Session
+      </span>
+</div>
+<!-- Assistant Intro Block -->
+<div class="flex items-start gap-3 max-w-[94%]">
+<div class="w-7 h-7 rounded-md bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[15px]">data_object</span>
+</div>
+<div class="flex flex-col gap-1.5 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-headline text-[12px] font-semibold text-slate-900">Biz Assist</span>
+<span class="text-[11px] text-slate-400">09:41 AM</span>
+</div>
+<div class="p-3.5 rounded-xl border border-slate-200/80 bg-white text-slate-700 shadow-2xs">
+<p class="text-[13px] leading-relaxed">
+            Hello Sarah. I have updated your operational synthesis with the latest sprint cycles, ERP logs, and vendor milestones. What strategic decision or operational hurdle are we addressing today?
+          </p>
+</div>
+</div>
+</div>
+<!-- User Question Block -->
+<div class="flex items-start justify-end gap-2.5 max-w-[90%] self-end">
+<div class="flex flex-col items-end gap-1.5 min-w-0">
+<div class="flex items-center gap-2">
+<span class="text-[11px] text-slate-400">09:42 AM</span>
+<span class="font-headline text-[12px] font-semibold text-slate-900">Sarah (COO)</span>
+</div>
+<div class="p-3.5 rounded-xl bg-slate-900 text-slate-100 border border-slate-800 shadow-2xs">
+<p class="text-[13px] leading-relaxed">
+            What are our top 3 operational bottlenecks this month and how can we address them without adding headcount?
+          </p>
+</div>
+</div>
+<div class="w-7 h-7 rounded-full overflow-hidden shrink-0 mt-0.5 ring-1 ring-slate-300">
+<img class="w-full h-full object-cover" data-alt="Professional modern portrait photograph of Sarah, a confident executive business leader with a friendly expression in a contemporary softly-lit daylight office setting, natural palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgXwpvkM0J5KDkhZdsuE-HO0CkIvVhAA5m8nK7NDb7QPm30Y0EfACm1Cqptqwenvpw8IitbGg1hsAU5ypP1wutUWw0fCsM32DEI1SPkzSWe7-R5H8eOUy8fyMAKXHAQ9qTAPzqQPIfUooRl2TA03O_cF8hmRzwTqkY0nPHOm_FzZxS0QSNKjoBI_TKv8AId3VRC0kcjniFY3t8c__eiEYsG45NeiyWrxZsS4C8FZNm"/>
+</div>
+</div>
+<!-- Detailed Assistant Response (Crafted Card Structure) -->
+<div class="flex items-start gap-3 w-full">
+<div class="w-7 h-7 rounded-md bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[15px]">analytics</span>
+</div>
+<div class="flex flex-col gap-2 flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-headline text-[12px] font-semibold text-slate-900">Analysis &amp; Synthesis</span>
+<span class="px-1.5 py-0.5 rounded border border-slate-200 bg-slate-50 text-[10px] font-medium text-slate-600">Verified Pipeline</span>
+</div>
+<span class="text-[11px] text-slate-400">Just now</span>
+</div>
+<!-- Card Body with Hairline Border and Structured Rows -->
+<div class="p-4 rounded-xl border border-slate-200 bg-white shadow-2xs flex flex-col gap-3.5 text-slate-800">
+<div class="border-b border-slate-100 pb-2.5">
+<div class="font-headline text-[14px] font-semibold text-slate-900">Top 3 Operational Bottlenecks</div>
+<p class="text-[12px] text-slate-500 mt-1 leading-normal">
+              Aggregated across 142 tickets, Jira sprint cadence, and ERP invoice tracking. Total estimated capacity loss: <span class="font-semibold text-slate-900">58 hours/week</span>.
+            </p>
+</div>
+<!-- Tabular Item 1 -->
+<div class="border border-slate-200/90 rounded-lg p-3 bg-slate-50/50">
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<div class="flex items-center gap-2">
+<span class="text-[11px] font-mono font-semibold text-slate-700 px-1.5 py-0.5 rounded bg-slate-200/70">01</span>
+<span class="font-headline text-[13px] font-semibold text-slate-900">Client Intake Handoff</span>
+</div>
+<span class="text-[11px] font-medium text-rose-700 bg-rose-50 border border-rose-200 px-1.5 py-0.5 rounded">Avg delay: 34h</span>
+</div>
+<div class="pl-6 text-[12px] text-slate-600 leading-relaxed">
+<span class="font-medium text-slate-800">Zero-Headcount Solution:</span> Implement standardized schema verification on intake forms. Incomplete payloads are held at submission, preventing premature PM queueing.
+            </div>
+</div>
+<!-- Tabular Item 2 -->
+<div class="border border-slate-200/90 rounded-lg p-3 bg-slate-50/50">
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<div class="flex items-center gap-2">
+<span class="text-[11px] font-mono font-semibold text-slate-700 px-1.5 py-0.5 rounded bg-slate-200/70">02</span>
+<span class="font-headline text-[13px] font-semibold text-slate-900">Vendor Invoice PO Review</span>
+</div>
+<span class="text-[11px] font-medium text-slate-700 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">Manual review</span>
+</div>
+<div class="pl-6 text-[12px] text-slate-600 leading-relaxed">
+<span class="font-medium text-slate-800">Zero-Headcount Solution:</span> Auto-approve purchase orders matching contract terms within a ±1.5% variance threshold; route only exceptions to finance directors.
+            </div>
+</div>
+<!-- Tabular Item 3 -->
+<div class="border border-slate-200/90 rounded-lg p-3 bg-slate-50/50">
+<div class="flex items-center justify-between gap-2 mb-1.5">
+<div class="flex items-center gap-2">
+<span class="text-[11px] font-mono font-semibold text-slate-700 px-1.5 py-0.5 rounded bg-slate-200/70">03</span>
+<span class="font-headline text-[13px] font-semibold text-slate-900">Cross-Team Status Synchronizations</span>
+</div>
+<span class="text-[11px] font-medium text-slate-600 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">11h/person/wk</span>
+</div>
+<div class="pl-6 text-[12px] text-slate-600 leading-relaxed">
+<span class="font-medium text-slate-800">Zero-Headcount Solution:</span> Replace 2 recurring syncs with an automated asynchronous brief. Escalate to live discussion only when risk thresholds trip.
+            </div>
+</div>
+<!-- Executive Recaptured Metric Callout -->
+<div class="p-2.5 rounded-lg border border-slate-200 bg-white flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-600 text-[16px]">trending_up</span>
+<span class="text-[12px] text-slate-600 font-medium">Projected Recaptured Focus</span>
+</div>
+<span class="text-[12px] font-headline font-semibold text-slate-900">+22% Weekly Capacity</span>
+</div>
+<!-- Professional Action Controls -->
+<div class="flex flex-col gap-2 pt-1 border-t border-slate-100">
+<button class="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-slate-900 text-white font-headline text-[12px] font-semibold hover:bg-slate-800 active:scale-98 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">fact_check</span>
+<span>Draft Execution Roadmap</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg border border-slate-200 bg-white text-slate-700 font-headline text-[11px] font-medium hover:bg-slate-50 transition-colors active:scale-95 shadow-2xs" type="button">
+<span class="material-symbols-outlined text-[15px] text-slate-500">ios_share</span>
+<span>Export Summary</span>
+</button>
+<button class="flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg border border-slate-200 bg-white text-slate-700 font-headline text-[11px] font-medium hover:bg-slate-50 transition-colors active:scale-95 shadow-2xs" onclick="this.querySelector('span:last-child').textContent = 'Copied'; setTimeout(() =&gt; this.querySelector('span:last-child').textContent = 'Copy Points', 1500);" type="button">
+<span class="material-symbols-outlined text-[15px] text-slate-500">content_copy</span>
+<span>Copy Points</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Metadata & Audit Line -->
+<div class="flex items-center justify-between px-0.5 text-slate-400">
+<div class="flex items-center gap-1.5 text-[11px]">
+<span class="material-symbols-outlined text-[13px]">verified_user</span>
+<span>Derived from 142 tickets &amp; ERP audit logs</span>
+</div>
+<div class="flex items-center gap-0.5">
+<button aria-label="Helpful" class="w-6 h-6 flex items-center justify-center rounded hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">thumb_up</span>
+</button>
+<button aria-label="Not helpful" class="w-6 h-6 flex items-center justify-center rounded hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">thumb_down</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Run-Rate Telemetry Card -->
+<div class="px-4 mb-2">
+<div class="p-3 rounded-xl border border-slate-200 bg-white shadow-2xs flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-slate-200">
+<img class="w-full h-full object-cover" data-alt="Abstract sleek 3D rendered graphic depicting synchronized lavender and cerulean gears and glowing data charts representing executive operational efficiency and automation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPdQaTpiyJlp5gOhdW0CxU1m4lBGUYiJ5_8Zl7S1kTryhvkNGGN8pcnTQykDAml5kpoLtdbhvcqLL_tLYEKdcPxwIG48fUs9_oDY9WVQ33mxKaHw4qDIUQzmSSrlzWybS37Hs2CWiJ0i7ofsThH50Vx64t9_eWGme_pzKTo7Y2UQkBzmHJyTdznTjHUROlSenrcQKOUEnnhLr_HiRmVTa3c1nCf7Ve5kXGzc7vv47z"/>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline text-[12px] font-semibold text-slate-900 truncate">Operational Efficiency Rate</span>
+<span class="font-headline text-[12px] font-semibold text-slate-900">94.2%</span>
+</div>
+<p class="text-[11px] text-slate-500 truncate">3 automated trigger rules currently in staging</p>
+</div>
+<button class="w-7 h-7 rounded-md border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 shrink-0 active:scale-95" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Suggested Questions (Crisp Outlines) -->
+<div class="px-4 pt-1 pb-2 flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Suggested Inquiries</span>
+<span class="text-[11px] text-slate-500">Tap to insert</span>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+<button class="suggestion-chip shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 font-headline text-[11px] font-medium hover:border-slate-300 hover:bg-slate-50 transition-all active:scale-95 shadow-2xs" data-prompt="Summarize Q3 milestones against target KPIs" type="button">
+<span class="material-symbols-outlined text-[14px] text-slate-500">bar_chart</span>
+<span>Summarize Q3 milestones</span>
+</button>
+<button class="suggestion-chip shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 font-headline text-[11px] font-medium hover:border-slate-300 hover:bg-slate-50 transition-all active:scale-95 shadow-2xs" data-prompt="Brainstorm customer retention tactics for high-tier accounts" type="button">
+<span class="material-symbols-outlined text-[14px] text-slate-500">lightbulb</span>
+<span>Retention tactics for enterprise</span>
+</button>
+<button class="suggestion-chip shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 font-headline text-[11px] font-medium hover:border-slate-300 hover:bg-slate-50 transition-all active:scale-95 shadow-2xs" data-prompt="Identify key operational risks across our supply chain" type="button">
+<span class="material-symbols-outlined text-[14px] text-slate-500">warning</span>
+<span>Identify operational risks</span>
+</button>
+<button class="suggestion-chip shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 font-headline text-[11px] font-medium hover:border-slate-300 hover:bg-slate-50 transition-all active:scale-95 shadow-2xs" data-prompt="Forecast team capacity next month under current client bookings" type="button">
+<span class="material-symbols-outlined text-[14px] text-slate-500">trending_up</span>
+<span>Forecast team capacity</span>
+</button>
+</div>
+</div>
+<!-- Tactical & Elegant Input Bar -->
+<div class="px-4 pt-1 pb-1">
+<div class="rounded-xl border border-slate-200 bg-white shadow-xs p-2 flex flex-col gap-1.5 focus-within:border-slate-400 transition-colors">
+<div class="flex items-center justify-between px-1 text-[11px]">
+<div class="flex items-center gap-1.5 text-slate-600 font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+<span>Context: Operations &amp; Logistics Active</span>
+</div>
+<button class="text-slate-400 hover:text-slate-700 transition-colors" onclick="document.getElementById('chat-input').value = '';" type="button">Clear</button>
+</div>
+<div class="flex items-end gap-1.5 pt-0.5">
+<button aria-label="Attach file" class="w-8 h-8 flex items-center justify-center rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors active:scale-95 shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">attach_file</span>
+</button>
+<button aria-label="Voice input" class="w-8 h-8 flex items-center justify-center rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors active:scale-95 shrink-0" id="mic-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+</button>
+<div class="flex-1 min-w-0">
+<textarea class="w-full bg-transparent resize-none border-none outline-none text-[13px] text-slate-900 placeholder:text-slate-400 py-1.5 max-h-24 leading-snug" id="chat-input" placeholder="Ask Biz Assist about financials, team, or operations..." rows="1"></textarea>
+</div>
+<button aria-label="Send prompt" class="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-900 text-white hover:bg-slate-800 active:scale-95 transition-all shrink-0 shadow-2xs" id="send-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function () {
+    const input = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const micBtn = document.getElementById('mic-btn');
+    const chips = document.querySelectorAll('.suggestion-chip');
+    const contextPills = document.querySelectorAll('.context-pill');
+
+    contextPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        contextPills.forEach(p => {
+          p.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
+          p.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+        });
+        pill.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+        pill.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
+      });
+    });
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const text = chip.getAttribute('data-prompt');
+        if (input && text) {
+          input.value = text;
+          input.focus();
+        }
+      });
+    });
+
+    let isRecording = false;
+    if (micBtn) {
+      micBtn.addEventListener('click', () => {
+        isRecording = !isRecording;
+        if (isRecording) {
+          micBtn.classList.add('bg-rose-50', 'text-rose-600');
+        } else {
+          micBtn.classList.remove('bg-rose-50', 'text-rose-600');
+        }
+      });
+    }
+
+    if (sendBtn && input) {
+      sendBtn.addEventListener('click', () => {
+        if (input.value.trim() !== '') {
+          input.value = '';
+          input.placeholder = 'Processing query against verified ledger...';
+          setTimeout(() => {
+            input.placeholder = 'Ask Biz Assist about financials, team, or operations...';
+          }, 2400);
+        }
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-40 pb-safe bg-white/90 backdrop-blur-md border-t border-slate-200/80"><div class="flex items-center justify-around h-14 px-2"><a class="flex flex-col items-center justify-center min-w-[54px] min-h-[42px] text-slate-500 hover:text-slate-900 transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="text-[10px] font-medium mt-0.5">Dashboard</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[54px] min-h-[42px] text-slate-900 font-semibold" data-path="ai-assistant" href="#"><span class="material-symbols-outlined text-[20px]">chat_bubble</span><span class="text-[10px] mt-0.5">Assistant</span></a><a class="flex flex-col items-center justify-center min-w-[54px] min-h-[42px] text-slate-500 hover:text-slate-900 transition-colors" data-path="data-analysis" href="#"><span class="material-symbols-outlined text-[20px]">query_stats</span><span class="text-[10px] font-medium mt-0.5">Analysis</span></a><a class="flex flex-col items-center justify-center min-w-[54px] min-h-[42px] text-slate-500 hover:text-slate-900 transition-colors" data-path="reports" href="#"><span class="material-symbols-outlined text-[20px]">description</span><span class="text-[10px] font-medium mt-0.5">Reports</span></a><button class="flex flex-col items-center justify-center min-w-[54px] min-h-[42px] text-slate-500 hover:text-slate-900 transition-colors" onclick="document.getElementById('mobile-drawer').classList.remove('-translate-x-full'); document.getElementById('drawer-backdrop').classList.remove('opacity-0', 'pointer-events-none');" type="button"><span class="material-symbols-outlined text-[20px]">more_horiz</span><span class="text-[10px] font-medium mt-0.5">More</span></button></div></nav></body></html>
+
+<!-- User Management -->
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta content="mobile_stack" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#5b598c",
+            "error": "#ba1a1a",
+            "surface-dim": "#d2d9f4",
+            "primary-fixed": "#e3dfff",
+            "tertiary-container": "#14007a",
+            "tertiary": "#050039",
+            "outline-variant": "#c8c5d0",
+            "background": "#faf8ff",
+            "secondary": "#0051d5",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#316bf3",
+            "on-surface": "#131b2e",
+            "on-error": "#ffffff",
+            "on-tertiary-container": "#7d77ff",
+            "surface-variant": "#dae2fd",
+            "primary-container": "#1e1b4b",
+            "on-secondary-container": "#fefcff",
+            "primary-fixed-dim": "#c4c1fb",
+            "surface": "#faf8ff",
+            "surface-container-high": "#e2e7ff",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#eef0ff",
+            "on-tertiary-fixed-variant": "#372abf",
+            "secondary-fixed": "#dbe1ff",
+            "surface-container": "#eaedff",
+            "on-surface-variant": "#47464f",
+            "on-primary-fixed-variant": "#444173",
+            "outline": "#787680",
+            "surface-bright": "#faf8ff",
+            "tertiary-fixed": "#e3dfff",
+            "on-secondary-fixed-variant": "#003ea8",
+            "inverse-primary": "#c4c1fb",
+            "surface-container-highest": "#dae2fd",
+            "on-primary-container": "#8683ba",
+            "on-secondary-fixed": "#00174b",
+            "secondary-fixed-dim": "#b4c5ff",
+            "on-tertiary-fixed": "#100069",
+            "tertiary-fixed-dim": "#c3c0ff",
+            "primary": "#070235",
+            "on-background": "#131b2e",
+            "error-container": "#ffdad6",
+            "surface-container-low": "#f2f3ff",
+            "on-primary-fixed": "#181445",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#283044"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans", "sans-serif"],
+            "body": ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
+      .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="bg-[#f8f9fc] font-body text-on-surface antialiased flex flex-col min-h-full">
+<!-- Fixed App Header -->
+<header class="fixed top-0 w-full z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 pt-safe">
+<div class="h-14 px-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<button aria-label="Go Back" class="w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 transition-colors active:scale-95" onclick="history.back()" type="button">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<img alt="Biz Assist Logo" class="h-6 w-auto object-contain opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxd5kGaNl0JFubd9VTaUpyrfUWT4HVlV_ThHfxlmBpzZoYGjoNpeeBlqQgrYNOfGDBFvud1Rl7O6fZy8SzXPH_47WK-0n10MKSmyCDhBxbY3DHDDUVJB4fe46RwWj62ri4jQWFTMU9-EPYsi5arfgwnQois83bQmn_WNTONfO3rmmo4NcCGjVL7IGeQioslro3iIJ1J__voZOfO0EAEig9lLzi5afmNa0I3vjLQhsu"/>
+<span class="text-xs font-semibold text-slate-300">/</span>
+<span class="font-headline font-semibold text-sm text-slate-900 tracking-tight">User Management</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Notifications" class="relative w-9 h-9 flex items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100 transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</button>
+<div class="w-8 h-8 rounded-full border border-slate-200 overflow-hidden ring-1 ring-slate-100">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZaRy-voUEC7KYKDXrzfoBs5LxlbDD9dtiN6-GwPTreb9NVpKXFw9QfXj1vawOlKqunU1NMUhrE_wjFNUpdibXRVd8RfavZhOmg9uskwjWuqJqbkM2TGxo_RBnlw62ZIufjLUHB_KBecn9CCRIAb95TcQSaD6Hcj0g1Ei6X7H3nfaNZ81ZwbWYMyW55n0KS05c1UX2hJGwh8MMu88t4urF9FdCdB98h6qyD5w8JWQs"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Viewport Content -->
+<main class="flex flex-col relative w-full pt-14 bg-[#f8f9fc] min-h-screen">
+<div class="flex flex-col w-full pb-safe max-w-2xl mx-auto">
+<!-- Toast Feedback -->
+<div class="fixed top-16 left-4 right-4 z-50 transform -translate-y-16 opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-slate-900 text-white shadow-lg border border-slate-800" id="toastNotification">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-emerald-400">check_circle</span>
+<span class="text-xs font-medium text-slate-100" id="toastMessage">Invitation link resent successfully.</span>
+</div>
+<button class="p-1 text-slate-400 hover:text-white" onclick="hideToast()" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+<!-- Header & Primary Action -->
+<div class="px-4 pt-5 pb-3 flex flex-col gap-4">
+<div class="flex items-start justify-between gap-3">
+<div>
+<h1 class="font-headline text-xl font-bold text-slate-900 tracking-tight">Team &amp; Access</h1>
+<p class="text-xs text-slate-500 mt-0.5">Manage workspace identities, roles, and seat allocations.</p>
+</div>
+<button class="flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-md bg-[#070235] text-white hover:bg-[#14007a] transition-all text-xs font-medium tracking-tight shadow-sm active:scale-95" id="openInviteBtn" type="button">
+<span class="material-symbols-outlined text-[16px]">person_add</span>
+<span>Invite Team Member</span>
+</button>
+</div>
+<!-- Seat Allocation Card (Enterprise Segmented Bar) -->
+<div class="rounded-lg bg-white border border-slate-200/90 p-4 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<div>
+<div class="text-[11px] font-semibold text-slate-400 tracking-wider uppercase">Seat Utilization</div>
+<div class="flex items-baseline gap-1.5 mt-0.5">
+<span class="font-headline text-base font-bold text-slate-900">18</span>
+<span class="text-xs text-slate-500 font-normal">of 25 seats used</span>
+</div>
+</div>
+<div class="px-2 py-1 rounded bg-slate-100 text-[11px] font-semibold text-slate-700 tracking-tight">
+              7 available
+            </div>
+</div>
+<!-- Structured Segmented Bar -->
+<div class="w-full bg-slate-100 rounded-sm h-2 overflow-hidden flex gap-0.5 p-0.5">
+<div class="bg-[#070235] h-full rounded-xs transition-all duration-300" style="width: 16%;" title="Admins: 4"></div>
+<div class="bg-[#0051d5] h-full rounded-xs transition-all duration-300" style="width: 32%;" title="Managers: 8"></div>
+<div class="bg-indigo-400 h-full rounded-xs transition-all duration-300" style="width: 24%;" title="Analysts: 6"></div>
+<div class="bg-slate-200 h-full rounded-xs flex-1" title="Unassigned: 7"></div>
+</div>
+<!-- Discrete Legend -->
+<div class="flex items-center justify-between pt-2.5 text-[11px] text-slate-600 border-t border-slate-100 mt-2.5">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-xs bg-[#070235]"></span>
+<span>4 Admins</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-xs bg-[#0051d5]"></span>
+<span>8 Managers</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-xs bg-indigo-400"></span>
+<span>6 Analysts</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-400">
+<span class="w-2 h-2 rounded-xs bg-slate-200"></span>
+<span>7 Vacant</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Search & Filters -->
+<div class="px-4 py-2 flex flex-col gap-2.5">
+<!-- Search Input with Command Key Shortcut -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-14 rounded-md bg-white border border-slate-200 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-300 shadow-sm transition-all" id="directorySearch" placeholder="Search by name or email..." type="text"/>
+<div class="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center">
+<button class="hidden text-slate-400 hover:text-slate-600 p-1 mr-1" id="clearSearchBtn" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+<kbd class="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded border border-slate-200 bg-slate-50 text-[10px] font-medium text-slate-400 font-mono">⌘K</kbd>
+</div>
+</div>
+<!-- Filter Pills Bar -->
+<div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-xs">
+<button class="role-pill active px-2.5 py-1 rounded-md text-[11px] font-semibold bg-slate-900 text-white transition-colors" data-role="all" type="button">All (18)</button>
+<button class="role-pill px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-role="Admin" type="button">Admin (4)</button>
+<button class="role-pill px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-role="Manager" type="button">Manager (8)</button>
+<button class="role-pill px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-role="Analyst" type="button">Analyst (6)</button>
+<button class="role-pill px-2.5 py-1 rounded-md text-[11px] font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-role="Pending" type="button">Pending (1)</button>
+</div>
+</div>
+<!-- Member Roster List -->
+<div class="px-4 py-2 flex flex-col gap-2.5">
+<div class="flex items-center justify-between px-0.5">
+<span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Active Workspace Roster</span>
+<span class="text-[11px] font-medium text-slate-500" id="memberCounter">5 Members shown</span>
+</div>
+<!-- Member 1: Sarah Jenkins (Owner / Admin) -->
+<div class="member-card rounded-lg bg-white border border-slate-200/90 p-3.5 shadow-sm flex flex-col gap-3 transition-all hover:border-slate-300" data-email="sarah@horizon.com" data-name="sarah jenkins" data-role="Admin">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative flex-shrink-0">
+<img alt="Sarah Jenkins" class="w-10 h-10 rounded-full object-cover ring-1 ring-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZaRy-voUEC7KYKDXrzfoBs5LxlbDD9dtiN6-GwPTreb9NVpKXFw9QfXj1vawOlKqunU1NMUhrE_wjFNUpdibXRVd8RfavZhOmg9uskwjWuqJqbkM2TGxo_RBnlw62ZIufjLUHB_KBecn9CCRIAb95TcQSaD6Hcj0g1Ei6X7H3nfaNZ81ZwbWYMyW55n0KS05c1UX2hJGwh8MMu88t4urF9FdCdB98h6qyD5w8JWQs"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white" title="Online"></span>
+</div>
+<div class="min-w-0 flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline text-xs font-semibold text-slate-900 truncate">Sarah Jenkins</span>
+<span class="px-1.5 py-0.2 rounded bg-slate-100 text-[10px] font-semibold text-slate-600">You</span>
+</div>
+<span class="text-xs text-slate-500 truncate">sarah@horizon.com</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200 flex-shrink-0">
+              Admin
+            </span>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+<span class="font-medium text-slate-700">Workspace Owner</span>
+<span class="text-slate-300">·</span>
+<span class="text-slate-400">Full Permissions</span>
+</div>
+<span class="text-[11px] text-slate-400">Primary Account</span>
+</div>
+</div>
+<!-- Member 2: Marcus Chen -->
+<div class="member-card rounded-lg bg-white border border-slate-200/90 p-3.5 shadow-sm flex flex-col gap-3 transition-all hover:border-slate-300" data-email="marcus@horizon.com" data-name="marcus chen" data-role="Manager">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative flex-shrink-0">
+<div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center font-headline text-xs font-bold">
+                  MC
+                </div>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white" title="Active"></span>
+</div>
+<div class="min-w-0 flex flex-col">
+<span class="font-headline text-xs font-semibold text-slate-900 truncate">Marcus Chen</span>
+<span class="text-xs text-slate-500 truncate">marcus@horizon.com</span>
+</div>
+</div>
+<div class="relative flex-shrink-0">
+<select class="role-selector appearance-none pl-2.5 pr-6 py-1 rounded bg-white border border-slate-200 text-[11px] font-semibold text-slate-700 cursor-pointer focus:outline-none focus:border-slate-400 transition-colors">
+<option value="Admin">Admin</option>
+<option selected="" value="Manager">Manager</option>
+<option value="Analyst">Analyst</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-slate-400 text-[14px]">unfold_more</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+<span>Operations Manager</span>
+<div class="flex items-center gap-3">
+<button class="text-slate-600 hover:text-slate-900 font-medium transition-colors" onclick="showToast('Permissions panel opened for Marcus Chen.')" type="button">Permissions</button>
+<span class="text-slate-200">|</span>
+<button class="text-[#0051d5] hover:underline font-medium flex items-center gap-0.5" onclick="showToast('Access logs for Marcus Chen generated.')" type="button">
+<span>View Activity</span>
+<span class="material-symbols-outlined text-[13px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Member 3: Amara Patel -->
+<div class="member-card rounded-lg bg-white border border-slate-200/90 p-3.5 shadow-sm flex flex-col gap-3 transition-all hover:border-slate-300" data-email="amara@horizon.com" data-name="amara patel" data-role="Analyst">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative flex-shrink-0">
+<div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center font-headline text-xs font-bold">
+                  AP
+                </div>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white" title="Active"></span>
+</div>
+<div class="min-w-0 flex flex-col">
+<span class="font-headline text-xs font-semibold text-slate-900 truncate">Amara Patel</span>
+<span class="text-xs text-slate-500 truncate">amara@horizon.com</span>
+</div>
+</div>
+<div class="relative flex-shrink-0">
+<select class="role-selector appearance-none pl-2.5 pr-6 py-1 rounded bg-white border border-slate-200 text-[11px] font-semibold text-slate-700 cursor-pointer focus:outline-none focus:border-slate-400 transition-colors">
+<option value="Admin">Admin</option>
+<option value="Manager">Manager</option>
+<option selected="" value="Analyst">Analyst</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-slate-400 text-[14px]">unfold_more</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+<span>Business Analyst</span>
+<div class="flex items-center gap-3">
+<button class="text-slate-600 hover:text-slate-900 font-medium transition-colors" onclick="showToast('Permissions panel opened for Amara Patel.')" type="button">Permissions</button>
+<span class="text-slate-200">|</span>
+<button class="text-[#0051d5] hover:underline font-medium flex items-center gap-0.5" onclick="showToast('Access logs for Amara Patel generated.')" type="button">
+<span>View Activity</span>
+<span class="material-symbols-outlined text-[13px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Member 4: David Kim -->
+<div class="member-card rounded-lg bg-white border border-slate-200/90 p-3.5 shadow-sm flex flex-col gap-3 transition-all hover:border-slate-300" data-email="david.k@horizon.com" data-name="david kim" data-role="Manager">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative flex-shrink-0">
+<div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center font-headline text-xs font-bold">
+                  DK
+                </div>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white" title="Active"></span>
+</div>
+<div class="min-w-0 flex flex-col">
+<span class="font-headline text-xs font-semibold text-slate-900 truncate">David Kim</span>
+<span class="text-xs text-slate-500 truncate">david.k@horizon.com</span>
+</div>
+</div>
+<div class="relative flex-shrink-0">
+<select class="role-selector appearance-none pl-2.5 pr-6 py-1 rounded bg-white border border-slate-200 text-[11px] font-semibold text-slate-700 cursor-pointer focus:outline-none focus:border-slate-400 transition-colors">
+<option value="Admin">Admin</option>
+<option selected="" value="Manager">Manager</option>
+<option value="Analyst">Analyst</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-slate-400 text-[14px]">unfold_more</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+<span>Department Lead</span>
+<div class="flex items-center gap-3">
+<button class="text-slate-600 hover:text-slate-900 font-medium transition-colors" onclick="showToast('Permissions panel opened for David Kim.')" type="button">Permissions</button>
+<span class="text-slate-200">|</span>
+<button class="text-[#0051d5] hover:underline font-medium flex items-center gap-0.5" onclick="showToast('Access logs for David Kim generated.')" type="button">
+<span>View Activity</span>
+<span class="material-symbols-outlined text-[13px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Member 5: Elena Vance (Pending) -->
+<div class="member-card rounded-lg bg-white border border-slate-200/90 p-3.5 shadow-sm flex flex-col gap-3 transition-all hover:border-slate-300" data-email="elena@horizon.com" data-name="elena vance" data-role="Pending">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative flex-shrink-0">
+<div class="w-10 h-10 rounded-full bg-slate-50 text-slate-400 border border-dashed border-slate-300 flex items-center justify-center font-headline text-xs font-semibold">
+                  EV
+                </div>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-amber-400 ring-2 ring-white" title="Pending Invite"></span>
+</div>
+<div class="min-w-0 flex flex-col">
+<span class="font-headline text-xs font-semibold text-slate-900 truncate">Elena Vance</span>
+<span class="text-xs text-slate-500 truncate">elena@horizon.com</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200/80 flex-shrink-0">
+              Pending
+            </span>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+<span class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>Invited 2 days ago</span>
+</span>
+<button class="text-xs font-medium text-slate-700 hover:text-slate-900 flex items-center gap-1 transition-colors px-2 py-1 rounded bg-slate-100 hover:bg-slate-200" onclick="showToast('Invitation re-sent to elena@horizon.com')" type="button">
+<span class="material-symbols-outlined text-[13px]">send</span>
+<span>Resend Invite</span>
+</button>
+</div>
+</div>
+<!-- Empty State -->
+<div class="hidden rounded-lg bg-white border border-slate-200 p-8 text-center flex-col items-center justify-center gap-2 shadow-sm" id="noResultsState">
+<div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search_off</span>
+</div>
+<div class="font-headline text-xs font-semibold text-slate-900">No members match your search</div>
+<p class="text-xs text-slate-500 max-w-xs">Check for spelling errors or clear filters to view the complete roster.</p>
+<button class="mt-2 px-3 py-1 rounded border border-slate-300 text-xs font-medium text-slate-700 hover:bg-slate-50" onclick="resetFilters()" type="button">Reset Search</button>
+</div>
+</div>
+<!-- Collapsible Role Permissions Matrix -->
+<div class="px-4 py-2">
+<div class="rounded-lg bg-white border border-slate-200/90 shadow-sm overflow-hidden">
+<button class="w-full px-4 py-3 flex items-center justify-between text-left hover:bg-slate-50 transition-colors" id="toggleRoleRefBtn" type="button">
+<div class="flex items-center gap-2.5">
+<span class="w-7 h-7 rounded bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600">
+<span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>
+</span>
+<div>
+<div class="font-headline text-xs font-semibold text-slate-900">Role Permissions Matrix</div>
+<div class="text-[11px] text-slate-500">Workspace authority &amp; execution rights</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 transition-transform duration-200" id="roleRefArrow">expand_more</span>
+</button>
+<div class="hidden px-4 pb-3.5 flex-col gap-2 border-t border-slate-100" id="roleRefContent">
+<div class="grid grid-cols-1 gap-2 pt-2 text-xs">
+<div class="p-2.5 rounded bg-slate-50 border border-slate-100 flex items-start gap-2.5">
+<span class="w-5 h-5 rounded bg-slate-900 text-white flex items-center justify-center text-[10px] font-bold mt-0.5">A</span>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-slate-900 text-xs">Admin</span>
+<span class="text-[10px] font-medium text-slate-600 uppercase tracking-wider">Full Control</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Full governance: billing, seat assignment, enterprise integrations, and data deletion policies.</p>
+</div>
+</div>
+<div class="p-2.5 rounded bg-slate-50 border border-slate-100 flex items-start gap-2.5">
+<span class="w-5 h-5 rounded bg-[#0051d5] text-white flex items-center justify-center text-[10px] font-bold mt-0.5">M</span>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-slate-900 text-xs">Manager</span>
+<span class="text-[10px] font-medium text-[#0051d5] uppercase tracking-wider">Create &amp; Edit</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Configure department workflows, initiate AI triggers, and publish shared dashboard templates.</p>
+</div>
+</div>
+<div class="p-2.5 rounded bg-slate-50 border border-slate-100 flex items-start gap-2.5">
+<span class="w-5 h-5 rounded bg-indigo-600 text-white flex items-center justify-center text-[10px] font-bold mt-0.5">L</span>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-semibold text-slate-900 text-xs">Analyst</span>
+<span class="text-[10px] font-medium text-slate-500 uppercase tracking-wider">Read &amp; Run</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Run analytical queries, monitor real-time metrics, and view shared workspace reports.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Security & Governance -->
+<div class="px-4 pt-2 pb-8 flex flex-col gap-2.5">
+<div class="px-0.5">
+<span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Security &amp; Governance</span>
+</div>
+<div class="rounded-lg bg-white border border-slate-200/90 shadow-sm divide-y divide-slate-100">
+<!-- 2FA Toggle -->
+<div class="p-3.5 flex items-center justify-between gap-3">
+<div class="flex items-start gap-2.5 pr-2">
+<span class="w-7 h-7 rounded bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">enhanced_encryption</span>
+</span>
+<div>
+<div class="font-headline text-xs font-semibold text-slate-900">Enforce Two-Factor Authentication</div>
+<p class="text-[11px] text-slate-500 leading-normal mt-0.5">Require 2FA authentication for all 18 active team members across mobile and web.</p>
+</div>
+</div>
+<!-- macOS/iOS Subtle Switch -->
+<label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+<input checked="" class="sr-only peer" id="twoFactorToggle" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:bg-slate-900 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all after:shadow-sm peer-checked:after:translate-x-4"></div>
+</label>
+</div>
+<!-- Domain Auto-Join -->
+<div class="p-3.5 flex items-center justify-between gap-3">
+<div class="flex items-start gap-2.5 pr-2">
+<span class="w-7 h-7 rounded bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 flex-shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[16px]">domain</span>
+</span>
+<div>
+<div class="font-headline text-xs font-semibold text-slate-900">Horizon Domain Auto-join</div>
+<p class="text-[11px] text-slate-500 leading-normal mt-0.5">Allow users with verified <span class="font-medium text-slate-700">@horizon.com</span> emails to automatically enter as Analyst.</p>
+</div>
+</div>
+<!-- macOS/iOS Subtle Switch -->
+<label class="relative inline-flex items-center cursor-pointer flex-shrink-0">
+<input class="sr-only peer" id="domainAutoJoin" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:bg-slate-900 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all after:shadow-sm peer-checked:after:translate-x-4"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Invite Modal -->
+<div class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs hidden flex items-end sm:items-center justify-center p-0 sm:p-4" id="inviteModal">
+<div class="w-full max-w-md bg-white rounded-t-xl sm:rounded-lg p-5 flex flex-col gap-4 shadow-xl border border-slate-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded bg-slate-100 flex items-center justify-center text-slate-700">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+</span>
+<h3 class="font-headline text-sm font-bold text-slate-900">Invite Team Member</h3>
+</div>
+<button class="w-7 h-7 flex items-center justify-center rounded text-slate-400 hover:text-slate-700 hover:bg-slate-100" id="closeInviteBtn" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-3">
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1">Corporate Email</label>
+<input class="w-full h-9 px-3 rounded border border-slate-300 text-xs text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-500 focus:ring-1 focus:ring-slate-300" id="inviteEmail" placeholder="name@horizon.com" type="email"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1">Assigned Role</label>
+<div class="grid grid-cols-3 gap-2">
+<label class="cursor-pointer">
+<input class="peer sr-only" name="inviteRole" type="radio" value="Admin"/>
+<div class="py-2 rounded border border-slate-200 text-center text-xs font-medium text-slate-600 peer-checked:bg-slate-900 peer-checked:text-white peer-checked:border-slate-900 transition-colors">
+                    Admin
+                  </div>
+</label>
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="inviteRole" type="radio" value="Manager"/>
+<div class="py-2 rounded border border-slate-200 text-center text-xs font-medium text-slate-600 peer-checked:bg-slate-900 peer-checked:text-white peer-checked:border-slate-900 transition-colors">
+                    Manager
+                  </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="inviteRole" type="radio" value="Analyst"/>
+<div class="py-2 rounded border border-slate-200 text-center text-xs font-medium text-slate-600 peer-checked:bg-slate-900 peer-checked:text-white peer-checked:border-slate-900 transition-colors">
+                    Analyst
+                  </div>
+</label>
+</div>
+</div>
+<p class="text-[11px] text-slate-500 leading-normal">
+              An invitation token valid for 72 hours will be sent to the corporate inbox with instructions for workspace onboarding.
+            </p>
+</div>
+<div class="flex items-center gap-2 pt-2 border-t border-slate-100">
+<button class="flex-1 py-2 rounded border border-slate-300 text-xs font-medium text-slate-700 hover:bg-slate-50" id="cancelInviteBtn" type="button">
+              Cancel
+            </button>
+<button class="flex-1 py-2 rounded bg-slate-900 text-white text-xs font-medium hover:bg-slate-800 transition-colors" id="submitInviteBtn" type="button">
+              Send Invitation
+            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+    // Toast Feedback
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      const label = document.getElementById('toastMessage');
+      if (!toast || !label) return;
+      label.textContent = msg;
+      toast.classList.remove('-translate-y-16', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(hideToast, 3500);
+    }
+
+    function hideToast() {
+      const toast = document.getElementById('toastNotification');
+      if (toast) {
+        toast.classList.add('-translate-y-16', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }
+    }
+
+    // Filter & Search Logic
+    let activeRoleFilter = 'all';
+    const searchInput = document.getElementById('directorySearch');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    const memberCards = document.querySelectorAll('.member-card');
+    const noResults = document.getElementById('noResultsState');
+    const counterLabel = document.getElementById('memberCounter');
+    const rolePills = document.querySelectorAll('.role-pill');
+
+    function filterMembers() {
+      const query = (searchInput.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      memberCards.forEach(card => {
+        const name = card.getAttribute('data-name') || '';
+        const email = card.getAttribute('data-email') || '';
+        const role = card.getAttribute('data-role') || '';
+
+        const matchesSearch = !query || name.includes(query) || email.includes(query);
+        const matchesRole = activeRoleFilter === 'all' || role.toLowerCase() === activeRoleFilter.toLowerCase();
+
+        if (matchesSearch && matchesRole) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (counterLabel) {
+        counterLabel.textContent = `${visibleCount} Member${visibleCount === 1 ? '' : 's'} shown`;
+      }
+
+      if (noResults) {
+        if (visibleCount === 0) {
+          noResults.classList.remove('hidden');
+          noResults.classList.add('flex');
+        } else {
+          noResults.classList.add('hidden');
+          noResults.classList.remove('flex');
+        }
+      }
+
+      if (clearSearchBtn) {
+        if (query.length > 0) {
+          clearSearchBtn.classList.remove('hidden');
+        } else {
+          clearSearchBtn.classList.add('hidden');
+        }
+      }
+    }
+
+    function resetFilters() {
+      if (searchInput) searchInput.value = '';
+      activeRoleFilter = 'all';
+      rolePills.forEach(pill => {
+        if (pill.getAttribute('data-role') === 'all') {
+          pill.classList.add('bg-slate-900', 'text-white');
+          pill.classList.remove('bg-white', 'text-slate-600');
+        } else {
+          pill.classList.remove('bg-slate-900', 'text-white');
+          pill.classList.add('bg-white', 'text-slate-600');
+        }
+      });
+      filterMembers();
+    }
+
+    searchInput?.addEventListener('input', filterMembers);
+    clearSearchBtn?.addEventListener('click', () => {
+      searchInput.value = '';
+      filterMembers();
+    });
+
+    rolePills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        rolePills.forEach(p => {
+          p.classList.remove('bg-slate-900', 'text-white');
+          p.classList.add('bg-white', 'text-slate-600');
+        });
+        pill.classList.add('bg-slate-900', 'text-white');
+        pill.classList.remove('bg-white', 'text-slate-600');
+        activeRoleFilter = pill.getAttribute('data-role') || 'all';
+        filterMembers();
+      });
+    });
+
+    // Role Selectors
+    document.querySelectorAll('.role-selector').forEach(sel => {
+      sel.addEventListener('change', (e) => {
+        const newRole = e.target.value;
+        const card = e.target.closest('.member-card');
+        if (card) {
+          card.setAttribute('data-role', newRole);
+          const name = card.getAttribute('data-name') || 'Team member';
+          showToast(`Role updated to ${newRole} for ${name}`);
+        }
+      });
+    });
+
+    // Role Permissions Reference Toggle
+    const toggleRoleRefBtn = document.getElementById('toggleRoleRefBtn');
+    const roleRefContent = document.getElementById('roleRefContent');
+    const roleRefArrow = document.getElementById('roleRefArrow');
+
+    toggleRoleRefBtn?.addEventListener('click', () => {
+      const isHidden = roleRefContent.classList.contains('hidden');
+      if (isHidden) {
+        roleRefContent.classList.remove('hidden');
+        roleRefContent.classList.add('flex');
+        roleRefArrow.classList.add('rotate-180');
+      } else {
+        roleRefContent.classList.add('hidden');
+        roleRefContent.classList.remove('flex');
+        roleRefArrow.classList.remove('rotate-180');
+      }
+    });
+
+    // Security Switch Changes
+    document.getElementById('twoFactorToggle')?.addEventListener('change', (e) => {
+      const state = e.target.checked ? 'enforced' : 'disabled';
+      showToast(`Two-Factor Authentication policy is now ${state}.`);
+    });
+
+    document.getElementById('domainAutoJoin')?.addEventListener('change', (e) => {
+      const state = e.target.checked ? 'enabled' : 'disabled';
+      showToast(`Domain auto-join policy is now ${state}.`);
+    });
+
+    // Keyboard shortcut handler for ⌘K / Ctrl+K
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        searchInput?.focus();
+      }
+    });
+
+    // Modal Handling
+    const inviteModal = document.getElementById('inviteModal');
+    const openInviteBtn = document.getElementById('openInviteBtn');
+    const closeInviteBtn = document.getElementById('closeInviteBtn');
+    const cancelInviteBtn = document.getElementById('cancelInviteBtn');
+    const submitInviteBtn = document.getElementById('submitInviteBtn');
+    const inviteEmailInput = document.getElementById('inviteEmail');
+
+    function openModal() {
+      inviteModal?.classList.remove('hidden');
+      inviteEmailInput?.focus();
+    }
+
+    function closeModal() {
+      inviteModal?.classList.add('hidden');
+      if (inviteEmailInput) inviteEmailInput.value = '';
+    }
+
+    openInviteBtn?.addEventListener('click', openModal);
+    closeInviteBtn?.addEventListener('click', closeModal);
+    cancelInviteBtn?.addEventListener('click', closeModal);
+
+    inviteModal?.addEventListener('click', (e) => {
+      if (e.target === inviteModal) closeModal();
+    });
+
+    submitInviteBtn?.addEventListener('click', () => {
+      const email = (inviteEmailInput?.value || '').trim();
+      if (!email || !email.includes('@')) {
+        showToast('Please enter a valid corporate email.');
+        return;
+      }
+      const roleEl = document.querySelector('input[name="inviteRole"]:checked');
+      const chosenRole = roleEl ? roleEl.value : 'Manager';
+      closeModal();
+      showToast(`Invitation sent to ${email} as ${chosenRole}!`);
+    });
+  </script>
+</body></html>

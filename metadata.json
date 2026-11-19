@@ -1,0 +1,6 @@
+{
+  "name": "Biz Assist — Executive Operations & AI Advisory",
+  "description": "Executive operational intelligence, strategic advisory briefs, AI copilot, and team governance workspace.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
